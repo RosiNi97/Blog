@@ -3,6 +3,9 @@
   font-size: larger;
   text-align: center;
 }
+.navbar {
+  text-align: center;
+}
 .navbar a {
   padding: 3rem;
 }
