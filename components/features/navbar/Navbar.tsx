@@ -1,7 +1,10 @@
+import styles from "../../../styles/Home.module.css";
+
 const Navbar = () => {
   return (
-    <div className="Navbar">
-      <a href="http://" target="_blank" rel="noopener noreferrer"></a>
+    <div className={styles.navbar}>
+      <a href="/Login">Login</a>
+      <a href="/Register">Register</a>
     </div>
   );
 };
