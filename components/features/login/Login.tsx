@@ -10,7 +10,7 @@ const LoginForm = () => {
       <input type="text" />
       <input type="password" />
       <input type="submit" value="Log In" />
-      <a href="/Register">register</a>
+      <a href="/registerPage">register</a>
     </form>
   );
 };
