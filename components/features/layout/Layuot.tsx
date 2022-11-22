@@ -4,7 +4,6 @@ import Navbar from "../navbar/Navbar";
 import LayoutType from "../../../types/types";
 
 const Layout = ({ children }: any) => {
-  console.log(children);
   return (
     <div>
       <Navbar />
