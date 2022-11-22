@@ -14,12 +14,12 @@ const RegisterForm = () => {
         registerEmail,
         registerPassword
       );
+      console.log(user);
     } catch (error: any) {
       console.log(error.message);
     }
   };
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault;
     register();
   };
   return (
