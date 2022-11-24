@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Test from "../components/features/firestoreTest/Test";
-
+import DBTest from "../components/features/firestoreTest/NewTest";
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -10,7 +10,6 @@ export default function Home() {
         <meta name="blog" content="blog" />
       </Head>
       <h1>HOME PAGE</h1>
-      <Test />
     </div>
   );
 }
