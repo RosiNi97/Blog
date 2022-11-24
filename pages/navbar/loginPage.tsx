@@ -1,10 +1,11 @@
-import LoginForm from "../../components/features/login/Login";
+import LoginUser from "../../components/features/login/LoginUser";
 
 const LoginPage = () => {
   return (
     <div>
       <h1>Please Log In</h1>
-      <LoginForm />
+
+      <LoginUser />
     </div>
   );
 };

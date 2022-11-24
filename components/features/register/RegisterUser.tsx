@@ -1,5 +1,5 @@
-import auth, { registerWithEmailPassword } from "../../../firebase/Auth";
-import { BaseSyntheticEvent, FormEvent } from "react";
+import { registerWithEmailPassword } from "../../../firebase/Auth";
+import { BaseSyntheticEvent } from "react";
 import RegisterForm from "./RegisterForm";
 
 const RegisterUser = () => {
@@ -11,6 +11,7 @@ const RegisterUser = () => {
     const password = form.get("password") as string;
 
     registerWithEmailPassword(email, password);
+    console.log("");
   };
   return (
     <div>

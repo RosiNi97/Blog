@@ -1,40 +1,13 @@
-import { FormEvent, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { Auth } from "firebase/auth";
-import { auth } from "../../../firebase/firebaseConfig";
+import Link from "next/link";
+import { BaseSyntheticEvent } from "react";
 
-const LoginForm = () => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-
-  const Login = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault;
-    Login();
-  };
-
+const LoginForm = (props: { HandleLogin: (e: BaseSyntheticEvent) => void }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        onChange={(e) => {
-          setLoginEmail(e.target.value);
-        }}
-      />
-      <input
-        type="password"
-        onChange={(e) => {
-          setLoginPassword(e.target.value);
-        }}
-      />
+    <form onSubmit={props.HandleLogin}>
+      <input type="email" name="email" />
+      <input type="password" name="password" />
       <input type="submit" value="Log In" />
-      <a href="/registerPage">register</a>
+      <Link href="./registerPage">register</Link>
     </form>
   );
 };
