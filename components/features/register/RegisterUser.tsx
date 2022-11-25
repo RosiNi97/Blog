@@ -15,6 +15,8 @@ const RegisterUser = () => {
     registerWithEmailPassword(email, password);
 
     AddUser(email, currentUser);
+
+    e.target.reset();
   };
   return (
     <div>

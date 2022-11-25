@@ -12,6 +12,8 @@ export default function LoginUser() {
     const password = form.get("password") as string;
 
     loginEmailPass(email, password);
+
+    e.target.reset();
   };
   return <LoginForm HandleLogin={handleLogin} />;
 }
