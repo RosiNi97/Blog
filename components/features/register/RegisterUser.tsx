@@ -1,8 +1,8 @@
-import { registerWithEmailPassword } from "../../../firebase/Auth";
+import { registerWithEmailPassword } from "../../../firebase/auth";
 import { BaseSyntheticEvent } from "react";
 import RegisterForm from "./RegisterForm";
-import { AddUser } from "../../../firebase/Firestore";
-import { currentUser } from "../../../firebase/Auth";
+import { AddUser } from "../../../firebase/firestore";
+import { currentUser } from "../../../firebase/auth";
 
 const RegisterUser = () => {
   const Register = async (e: BaseSyntheticEvent) => {

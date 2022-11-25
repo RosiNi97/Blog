@@ -7,7 +7,7 @@ import app from "./firebaseConfig";
 
 const auth = getAuth(app);
 
-export const currentUser = auth.currentUser?.uid.toString();
+export const currentUser = auth.currentUser?.uid as string;
 
 export const registerWithEmailPassword = async (
   username: string,

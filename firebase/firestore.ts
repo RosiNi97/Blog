@@ -5,11 +5,11 @@ import { User } from "firebase/auth";
 
 export const db = getFirestore(app);
 
-export const AddUser = async (email: string, userID: any) => {
+export const AddUser = async (email: string, userID: string) => {
   try {
     const docRef = await addDoc(collection(db, "users"), {
       email: email,
-      userID: userID,
+      userUID: userID,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {

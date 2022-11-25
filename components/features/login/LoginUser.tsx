@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent } from "react";
-import auth, { loginEmailPass } from "../../../firebase/Auth";
+import auth, { loginEmailPass } from "../../../firebase/auth";
 import LoginForm from "./Login";
 
 export default function LoginUser() {
