@@ -5,7 +5,12 @@
 }
 .navbar {
   text-align: center;
+  background-color: cornsilk;
+  padding: 2rem;
+  border: solid black 2px;
 }
 .navbar a {
-  padding: 3rem;
+  margin: 3rem;
+  border: solid black 2px;
+  padding: 1rem;
 }

@@ -4,11 +4,26 @@ const RegisterForm = (props: {
   HandleSubmit: (e: BaseSyntheticEvent) => Promise<void>;
 }) => {
   return (
+    //The class names are placeholders
     <div className={styles.register}>
       <form onSubmit={props.HandleSubmit}>
-        <input type="email" name="email" />
-        <input type="password" name="password" />
-        <input type="submit" value="Register" />
+        <div className={styles.title}>Register</div>
+
+        <input
+          type="email"
+          className={styles.email}
+          name="email"
+          placeholder="Email"
+        />
+
+        <input
+          type="password"
+          className={styles.password}
+          name="password"
+          placeholder="password"
+        />
+
+        <input type="submit" className={styles.button} value="Register" />
       </form>
     </div>
   );
