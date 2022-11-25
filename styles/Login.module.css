@@ -16,6 +16,7 @@
   justify-content: center;
   flex-direction: column;
   margin: 2rem;
+  min-width: 28rem;
 }
 .title {
   font-weight: 700;
