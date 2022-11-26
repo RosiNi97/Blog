@@ -6,7 +6,8 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <Link href="/">Home</Link>
       <Link href="/navbar/loginPage">Login</Link>
-      <Link href="/navbar/registerPage">Register</Link>
+      
+      {/* <Link href="/navbar/registerPage">Register</Link> */}
     </div>
   );
 };
