@@ -1,0 +1,29 @@
+.register {
+  display: flex;
+  justify-content: center;
+  border: solid black 2px;
+  background-color: aliceblue;
+  margin: 4rem;
+  font-size: 40px;
+}
+.register input {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 50px;
+}
+.register form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+  min-width: 28rem;
+}
+.title {
+  font-weight: 700;
+}
+.button {
+  border-radius: 5px;
+  border: 1px;
+  background-color: burlywood;
+  margin-top: 1rem;
+}
