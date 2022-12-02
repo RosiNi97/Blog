@@ -1,15 +1,33 @@
-import Link from "next/link";
-import styles from "../../../styles/Home.module.css";
+import LogedInNavbar from "./LoggedInNavbar";
+import LogedOutNavbar from "./LoggedOutNavbar";
+import auth from "../../../firebase/auth";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Navbar = () => {
-  return (
-    <div className={styles.navbar}>
-      <Link href="/">Home</Link>
-      <Link href="/navbar/loginPage">Login</Link>
-      
-      {/* <Link href="/navbar/registerPage">Register</Link> */}
-    </div>
+  const [userLogged, setUserLogged] = useState<boolean>(false);
+  useEffect(
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserLogged(true);
+      } else {
+        setUserLogged(false);
+      }
+    })
   );
+  // const userLoggedIn: () => void = onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     setUserLogged(true);
+  //   } else {
+  //     setUserLogged(false);
+  //   }
+  // });
+
+  if (userLogged) {
+    return <LogedInNavbar />;
+  } else {
+    return <LogedOutNavbar />;
+  }
 };
 
 export default Navbar;

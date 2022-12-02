@@ -1,6 +1,7 @@
 import { BaseSyntheticEvent } from "react";
 import auth, { loginEmailPass } from "../../../firebase/auth";
 import LoginForm from "./Login";
+import middleware from "./redirect";
 
 export default function LoginUser() {
   const handleLogin = (e: BaseSyntheticEvent) => {
@@ -12,7 +13,7 @@ export default function LoginUser() {
     const password = form.get("password") as string;
 
     loginEmailPass(email, password);
-
+    console.log(auth.currentUser);
     e.target.reset();
   };
   return <LoginForm HandleLogin={handleLogin} />;
