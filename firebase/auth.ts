@@ -13,7 +13,7 @@ const auth = getAuth(app);
 
 export const user = auth.currentUser as User;
 
-export const currentUserUid = auth.currentUser?.uid as string;
+export const currentUserUid: string = auth.currentUser?.uid as string;
 
 export const userLoggedIn: () => void | boolean = onAuthStateChanged(
   auth,

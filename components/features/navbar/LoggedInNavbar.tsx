@@ -9,7 +9,7 @@ const LogedInNavbar = () => {
   return (
     <div className={styles.navbar}>
       <Link href="/">Home</Link>
-      <Link href="/">Profile</Link>
+      <Link href="../profilePage">Profile</Link>
       <button onClick={handleClick}>Log Out</button>
     </div>
   );

@@ -17,8 +17,7 @@ const RegisterUser = () => {
     const password = form.get("password") as string;
 
     registerWithEmailPassword(email, password);
-    AddUser(email, currentUserUid, username);
-
+    AddUser(email, username);
     e.target.reset();
   };
   return (

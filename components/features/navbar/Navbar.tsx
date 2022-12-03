@@ -15,13 +15,6 @@ const Navbar = () => {
       }
     })
   );
-  // const userLoggedIn: () => void = onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     setUserLogged(true);
-  //   } else {
-  //     setUserLogged(false);
-  //   }
-  // });
 
   if (userLogged) {
     return <LogedInNavbar />;
