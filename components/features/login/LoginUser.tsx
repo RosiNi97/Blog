@@ -1,5 +1,7 @@
+import { collection, query, where } from "firebase/firestore";
 import { BaseSyntheticEvent } from "react";
-import auth, { loginEmailPass } from "../../../firebase/auth";
+import auth, { currentUserUid, loginEmailPass } from "../../../firebase/auth";
+import db, { usersDB } from "../../../firebase/firestore";
 import LoginForm from "./Login";
 import middleware from "./redirect";
 
@@ -15,6 +17,9 @@ export default function LoginUser() {
     loginEmailPass(email, password);
     console.log(auth.currentUser);
     e.target.reset();
+
+    const userObj = query(usersDB, where("username", "==", "username"))
+    console.log(userObj)
   };
   return <LoginForm HandleLogin={handleLogin} />;
 }

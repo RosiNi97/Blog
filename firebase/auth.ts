@@ -13,7 +13,7 @@ const auth = getAuth(app);
 
 export const user = auth.currentUser as User;
 
-export const currentUserUid: string = auth.currentUser?.uid as string;
+export const currentUserUid: string = user?.uid as string;
 
 export const userLoggedIn: () => void | boolean = onAuthStateChanged(
   auth,
@@ -39,7 +39,7 @@ export const registerWithEmailPassword = async (
 
 export const loginEmailPass = async (email: string, password: string) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+   await signInWithEmailAndPassword(auth, email, password);
   } catch (err: any) {
     alert(err.message);
   }
