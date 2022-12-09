@@ -28,7 +28,7 @@ export const currentUserDoc = async (userUID: string) => {
   const docRef = doc(db, "usersDB", userUID);
   const docSnap = await getDoc(docRef);
   console.log(docSnap.data());
-  return docSnap;
+  return docSnap.data();
 };
 
 export default db;

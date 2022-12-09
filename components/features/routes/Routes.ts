@@ -6,3 +6,7 @@ export const routerProfile = (userUID: string) => {
 export const routerLogin = () => {
   router.push("/navbar/loginPage");
 };
+
+export const routerHome = () => {
+  router.push("/");
+};

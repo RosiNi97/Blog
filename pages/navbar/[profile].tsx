@@ -1,4 +1,11 @@
-const Profile = () => {
-  return <div>HI</div>;
+import Profile from "../../components/features/profile/Profile";
+
+const ProfilePage = () => {
+  return (
+    <div>
+      HI
+      <Profile userUID={""} />
+    </div>
+  );
 };
-export default Profile;
+export default ProfilePage;

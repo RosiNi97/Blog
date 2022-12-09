@@ -6,6 +6,7 @@ import {
   User,
 } from "firebase/auth";
 import {
+  routerHome,
   routerLogin,
   routerProfile,
 } from "../components/features/routes/Routes";
@@ -49,7 +50,7 @@ export const loginEmailPass = async (email: string, password: string) => {
     alert(err.message);
     return routerLogin();
   }
-  routerProfile(auth.currentUser?.uid as string);
+  routerHome();
 };
 
 export default auth;
