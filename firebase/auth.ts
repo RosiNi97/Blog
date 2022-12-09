@@ -8,7 +8,7 @@ import {
 import {
   routerLogin,
   routerProfile,
-} from "../components/features/routes/routes";
+} from "../components/features/routes/Routes";
 import app from "./firebaseConfig";
 import { AddUser } from "./firestore";
 

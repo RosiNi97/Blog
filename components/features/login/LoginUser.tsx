@@ -1,7 +1,7 @@
 import router from "next/router";
 import { BaseSyntheticEvent } from "react";
 import { loginEmailPass } from "../../../firebase/auth";
-import { routerProfile } from "../routes/routes";
+import { routerProfile } from "../routes/Routes";
 
 import LoginForm from "./Login";
 
