@@ -8,12 +8,13 @@ import {
 } from "firebase/auth";
 import app from "./firebaseConfig";
 import { FirebaseError } from "firebase/app";
+import { AddUser } from "./firestore";
 
 const auth = getAuth(app);
 
-export const user = auth.currentUser as User;
+export const user: () => User = () => auth.currentUser as User;
 
-export const currentUserUid: string = user?.uid as string;
+export const currentUserUid: string = auth.currentUser?.uid as string;
 
 export const userLoggedIn: () => void | boolean = onAuthStateChanged(
   auth,
@@ -28,18 +29,20 @@ export const userLoggedIn: () => void | boolean = onAuthStateChanged(
 
 export const registerWithEmailPassword = async (
   email: string,
-  password: string
+  password: string,
+  username: string
 ) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
   } catch (err: any) {
     alert(err.message);
   }
+  AddUser(email, username, currentUserUid);
 };
 
 export const loginEmailPass = async (email: string, password: string) => {
   try {
-   await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (err: any) {
     alert(err.message);
   }

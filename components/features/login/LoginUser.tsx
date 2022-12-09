@@ -17,9 +17,7 @@ export default function LoginUser() {
     loginEmailPass(email, password);
     console.log(auth.currentUser);
     e.target.reset();
-
-    const userObj = query(usersDB, where("username", "==", "username"))
-    console.log(userObj)
   };
+
   return <LoginForm HandleLogin={handleLogin} />;
 }
