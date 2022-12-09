@@ -1,4 +1,4 @@
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import app from "./firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import auth, { currentUserUid } from "./auth";
@@ -22,6 +22,13 @@ export const AddUser = async (
   } catch (e) {
     console.error("Error adding document: ", e);
   }
+};
+
+export const currentUserDoc = async (userUID: string) => {
+  const docRef = doc(db, "usersDB", userUID);
+  const docSnap = await getDoc(docRef);
+  console.log(docSnap.data());
+  return docSnap;
 };
 
 export default db;

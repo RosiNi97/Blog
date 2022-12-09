@@ -1,9 +1,8 @@
-import { collection, query, where } from "firebase/firestore";
+import router from "next/router";
 import { BaseSyntheticEvent } from "react";
-import auth, { currentUserUid, loginEmailPass } from "../../../firebase/auth";
-import db, { usersDB } from "../../../firebase/firestore";
+import { loginEmailPass } from "../../../firebase/auth";
+
 import LoginForm from "./Login";
-import middleware from "./redirect";
 
 export default function LoginUser() {
   const handleLogin = (e: BaseSyntheticEvent) => {
@@ -15,8 +14,8 @@ export default function LoginUser() {
     const password = form.get("password") as string;
 
     loginEmailPass(email, password);
-    console.log(auth.currentUser);
     e.target.reset();
+    router.push("/");
   };
 
   return <LoginForm HandleLogin={handleLogin} />;

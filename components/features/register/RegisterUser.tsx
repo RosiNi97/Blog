@@ -1,6 +1,7 @@
 import { registerWithEmailPassword } from "../../../firebase/auth";
 import { BaseSyntheticEvent } from "react";
 import RegisterForm from "./RegisterForm";
+import router from "next/router";
 
 const RegisterUser = () => {
   const Register = async (e: BaseSyntheticEvent) => {
@@ -13,6 +14,7 @@ const RegisterUser = () => {
 
     registerWithEmailPassword(email, password, username);
     e.target.reset();
+    router.push("/");
   };
   return (
     <div>
