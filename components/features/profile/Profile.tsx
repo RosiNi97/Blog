@@ -11,14 +11,15 @@ import auth, { currentUserUid } from "../../../firebase/auth";
 import db, { usersDB } from "../../../firebase/firestore";
 import ProfileTemplate from "./ProfileTemplate";
 import { currentUserDoc } from "../../../firebase/firestore";
+import { useRouter } from "next/router";
 
-const Profile = (props: any) => {
+const Profile = (props: { userUID: string }) => {
   const [userDoc, setUserDoc] = useState<DocumentData>();
   const [username, setUsername] = useState();
 
   const handleClick = async (e: BaseSyntheticEvent) => {
     e.preventDefault();
-    const docSnap = await currentUserDoc(auth.currentUser?.uid as string);
+    const docSnap = await currentUserDoc(props.userUID);
     setUserDoc(docSnap);
     console.log("userDoc :" + userDoc);
     setUsername(docSnap?.username);
