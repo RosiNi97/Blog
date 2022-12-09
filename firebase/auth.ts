@@ -3,11 +3,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  updateProfile,
   User,
 } from "firebase/auth";
 import app from "./firebaseConfig";
-import { FirebaseError } from "firebase/app";
 import { AddUser } from "./firestore";
 
 const auth = getAuth(app);
@@ -37,7 +35,7 @@ export const registerWithEmailPassword = async (
   } catch (err: any) {
     alert(err.message);
   }
-  AddUser(email, username, currentUserUid);
+  AddUser(email, username, auth.currentUser?.uid as string);
 };
 
 export const loginEmailPass = async (email: string, password: string) => {

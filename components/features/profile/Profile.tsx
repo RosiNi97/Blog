@@ -1,7 +1,7 @@
-import { doc, getDocs, query, where } from "firebase/firestore";
+import { doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import auth, { currentUserUid } from "../../../firebase/auth";
-import { usersDB } from "../../../firebase/firestore";
+import db, { usersDB } from "../../../firebase/firestore";
 import ProfileTemplate from "./ProfileTemplate";
 
 const Profile = () => {
@@ -26,11 +26,17 @@ const Profile = () => {
       console.log(err);
     }
   };
+  const currentUserDoc = async () => {
+    const docRef = doc(db, "usersDB", userUID);
+    const docSnap = await getDoc(docRef);
+    console.log(docSnap.data());
+  };
 
   useEffect(() => {
     console.log(auth.currentUser?.uid);
-    userDoc();
-    userObj();
+    console.log(currentUserDoc());
+    // userDoc();
+    // userObj();
     // console.log(user);
   });
 
