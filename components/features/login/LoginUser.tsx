@@ -1,6 +1,7 @@
 import router from "next/router";
 import { BaseSyntheticEvent } from "react";
 import { loginEmailPass } from "../../../firebase/auth";
+import { routerProfile } from "../routes/routes";
 
 import LoginForm from "./Login";
 
@@ -15,7 +16,6 @@ export default function LoginUser() {
 
     loginEmailPass(email, password);
     e.target.reset();
-    router.push("/");
   };
 
   return <LoginForm HandleLogin={handleLogin} />;

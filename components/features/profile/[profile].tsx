@@ -16,7 +16,6 @@ const Profile = () => {
   return (
     <div>
       <ProfileTemplate username={"user"} />
-      {JSON.stringify(userDoc)}
     </div>
   );
 };

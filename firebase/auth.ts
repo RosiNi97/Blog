@@ -5,6 +5,10 @@ import {
   onAuthStateChanged,
   User,
 } from "firebase/auth";
+import {
+  routerLogin,
+  routerProfile,
+} from "../components/features/routes/routes";
 import app from "./firebaseConfig";
 import { AddUser } from "./firestore";
 
@@ -43,7 +47,9 @@ export const loginEmailPass = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err: any) {
     alert(err.message);
+    return routerLogin();
   }
+  routerProfile(auth.currentUser?.uid as string);
 };
 
 export default auth;
