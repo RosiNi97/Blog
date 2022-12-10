@@ -1,5 +1,6 @@
 import { BaseSyntheticEvent } from "react";
 import styles from "../../../styles/Register.module.css";
+
 const RegisterForm = (props: {
   HandleSubmit: (e: BaseSyntheticEvent) => Promise<void>;
 }) => {

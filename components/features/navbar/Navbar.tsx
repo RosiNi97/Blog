@@ -10,8 +10,9 @@ const Navbar = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserLogged(true);
-      } else {
-        setUserLogged(false);
+      // } else {      </ThemeContext.Provider>
+
+      setUserLogged(false);
       }
     })
   );

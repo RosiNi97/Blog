@@ -25,10 +25,14 @@ export const AddUser = async (
 };
 
 export const currentUserDoc = async (userUID: string) => {
-  const docRef = doc(db, "usersDB", userUID);
-  const docSnap = await getDoc(docRef);
-  console.log(docSnap.data());
-  return docSnap.data();
+  if (userUID !== undefined) {
+    console.log(userUID);
+    const docRef = doc(db, "usersDB", userUID);
+    const docSnap = await getDoc(docRef);
+    console.log(docSnap.data());
+    return docSnap.data();
+  }
+  return {};
 };
 
 export default db;

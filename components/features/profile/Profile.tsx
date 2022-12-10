@@ -12,23 +12,26 @@ import db, { usersDB } from "../../../firebase/firestore";
 import ProfileTemplate from "./ProfileTemplate";
 import { currentUserDoc } from "../../../firebase/firestore";
 import { useRouter } from "next/router";
+import UserPostList from "./UserPosts";
 
-const Profile = (props: { userUID: string }) => {
+const Profile = () => {
   const [userDoc, setUserDoc] = useState<DocumentData>();
   const [username, setUsername] = useState();
 
-  const handleClick = async (e: BaseSyntheticEvent) => {
-    e.preventDefault();
-    const docSnap = await currentUserDoc(props.userUID);
-    setUserDoc(docSnap);
-    console.log("userDoc :" + userDoc);
-    setUsername(docSnap?.username);
-  };
+  console.log(auth.currentUser)
+
+  useEffect(() => {
+    currentUserDoc(auth.currentUser?.uid as string).then((doc) => {
+      setUserDoc(doc);
+      setUsername(doc?.username );
+    });
+  }, [auth.currentUser]);
+  
 
   return (
     <div>
       <ProfileTemplate username={username} />
-      <button onClick={(e) => handleClick(e)}>Click</button>
+      <UserPostList/>
     </div>
   );
 };
