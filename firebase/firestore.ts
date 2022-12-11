@@ -16,9 +16,7 @@ export const AddUser = async (
     const docRef = await setDoc(doc(db, "usersDB", userUID), {
       username: username,
       email: email,
-      userUID: currentUserUid,
     });
-    console.log("Document written with ID: ", docRef);
   } catch (e) {
     console.error("Error adding document: ", e);
   }

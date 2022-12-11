@@ -1,23 +1,14 @@
 import LogedInNavbar from "./LoggedInNavbar";
 import LogedOutNavbar from "./LoggedOutNavbar";
-import auth from "../../../firebase/auth";
-import { useEffect, useState } from "react";
+import auth, { user } from "../../../firebase/auth";
+import { useContext } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { UserContext } from "../layout/Layuot";
 
 const Navbar = () => {
-  const [userLogged, setUserLogged] = useState<boolean>(false);
-  useEffect(
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserLogged(true);
-      // } else {      </ThemeContext.Provider>
+  const { userState } = useContext(UserContext);
 
-      setUserLogged(false);
-      }
-    })
-  );
-
-  if (userLogged) {
+  if (userState) {
     return <LogedInNavbar />;
   } else {
     return <LogedOutNavbar />;
