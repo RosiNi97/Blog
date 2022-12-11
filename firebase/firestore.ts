@@ -1,8 +1,6 @@
-import { getFirestore } from "firebase/firestore";
 import app from "./firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, getFirestore } from "firebase/firestore";
 import { User } from "firebase/auth";
-
 export const db = getFirestore(app);
 
 export const AddUser = async (email: string, userID: string) => {
@@ -16,3 +14,8 @@ export const AddUser = async (email: string, userID: string) => {
     console.error("Error adding document: ", e);
   }
 };
+
+export const getblogcollections = async () => {
+return await getDocs(collection(db, "blogs"));
+}
+
