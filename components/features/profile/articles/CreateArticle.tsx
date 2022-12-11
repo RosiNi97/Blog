@@ -15,6 +15,7 @@ const CreateArticle = () => {
     const contents = form.get("contents") as string;
 
     AddArticle(title, contents, auth.currentUser?.uid as string, username);
+
     e.target.reset();
     routerProfile();
   };

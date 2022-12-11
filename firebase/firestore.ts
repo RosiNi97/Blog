@@ -14,6 +14,8 @@ export const db = getFirestore(app);
 
 export const usersDB = collection(db, "usersDB");
 
+//User Doc Functions
+
 export const AddUser = async (
   email: string,
   username: string,
@@ -31,14 +33,23 @@ export const AddUser = async (
 
 export const currentUserDoc = async (userUID: string) => {
   if (userUID !== undefined) {
-    console.log(userUID);
-    const docRef = doc(db, "usersDB", userUID);
-    const docSnap = await getDoc(docRef);
-    console.log(docSnap.data());
-    return docSnap.data();
-  }
-  return {};
+    const userDataRef = doc(db, "usersDB", userUID);
+    const userDataSnap = await getDoc(userDataRef);
+    const userData = userDataSnap.data();
+
+    const articleRef = doc(db, "articles", userUID);
+    const articleSnap = await getDoc(articleRef);
+    const articlesData = articleSnap.data();
+
+    const data: { user: string; articles: any } = {
+      user: userData?.username as string,
+      articles: { articlesData },
+    };
+    return data;
+  } else return {};
 };
+
+//Article Doc functions
 
 export const AddArticle = async (
   title: string,
@@ -73,6 +84,12 @@ export const AddArticle = async (
       console.log(err);
     }
   }
+};
+
+export const currentUserArticles = async (userUID: string) => {
+  const docRef = doc(db, "articles", userUID);
+  const docSnap = await getDoc(docRef);
+  return docSnap.data();
 };
 
 export default db;

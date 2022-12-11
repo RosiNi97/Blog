@@ -1,11 +1,7 @@
+import { useContext } from "react";
+import { UserContext } from "../../layout/Layuot";
+
 const ArticleTemplate = () => {
-  return (
-    <div className="article">
-      <h3>name</h3>
-      <p>Article Text</p>
-      <img src="" alt="" />
-      <button>DELETE</button>
-    </div>
-  );
+  return <div></div>;
 };
 export default ArticleTemplate;
