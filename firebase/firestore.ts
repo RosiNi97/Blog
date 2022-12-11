@@ -1,4 +1,5 @@
 import {
+  arrayUnion,
   doc,
   getDoc,
   getFirestore,
@@ -47,24 +48,22 @@ export const AddArticle = async (
 ) => {
   const docRef = doc(db, "articles", userUID);
   const docSnap = await getDoc(docRef);
-  if (!docSnap.exists()) {
+  if (docSnap.exists()) {
     try {
       await updateDoc(doc(db, "articles", userUID), {
-        articles: [
-          ...[{ title: title, contents: contents, id: userUID + title }],
-        ],
+        articles: arrayUnion({ title: title, contents: contents, id: userUID }),
       });
     } catch (err) {
       console.log(err);
     }
   } else {
     try {
-      await setDoc(doc(db, "articles", userUID + title), {
+      await setDoc(doc(db, "articles", userUID), {
         articles: [
           {
             title: title,
             contents: contents,
-            id: userUID + title,
+            id: "userUID + title",
           },
         ],
         author: username,
