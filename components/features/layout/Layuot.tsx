@@ -1,6 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { DocumentData } from "firebase/firestore";
-import { useEffect, useState, createContext } from "react";
+import { useState, createContext } from "react";
 import auth from "../../../firebase/auth";
 import { currentUserDoc } from "../../../firebase/firestore";
 import Navbar from "../navbar/Navbar";

@@ -1,7 +1,14 @@
-const UserPostList= ()=>{
-    return <div>
-        <title>Article Title</title>
-        </div>
-}
+import Link from "next/link";
+import ArticleTemplate from "./articles/ArticleTemplate";
 
-export default UserPostList
+const UserPostList = () => {
+  return (
+    <div className="articles">
+      <h1>Article List</h1>
+      <Link href={"/navbar/createArticle"}>Create Article</Link>
+      <ArticleTemplate />
+    </div>
+  );
+};
+
+export default UserPostList;

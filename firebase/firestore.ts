@@ -1,4 +1,10 @@
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import app from "./firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import auth, { currentUserUid } from "./auth";
@@ -31,6 +37,43 @@ export const currentUserDoc = async (userUID: string) => {
     return docSnap.data();
   }
   return {};
+};
+
+export const AddArticle = async (
+  title: string,
+  contents: string,
+  userUID: string,
+  username: string
+) => {
+  const docRef = doc(db, "articles", userUID);
+  const docSnap = await getDoc(docRef);
+  if (!docSnap.exists()) {
+    try {
+      await updateDoc(doc(db, "articles", userUID), {
+        articles: [
+          ...[{ title: title, contents: contents, id: userUID + title }],
+        ],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    try {
+      await setDoc(doc(db, "articles", userUID + title), {
+        articles: [
+          {
+            title: title,
+            contents: contents,
+            id: userUID + title,
+          },
+        ],
+        author: username,
+        authorUID: userUID,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };
 
 export default db;
