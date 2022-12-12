@@ -1,4 +1,8 @@
+import { DocumentData } from "firebase/firestore";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import auth from "../../../firebase/auth";
+import { currentUserArticles } from "../../../firebase/firestore";
 import ArticleTemplate from "./articles/ArticleTemplate";
 
 const UserPostList = () => {

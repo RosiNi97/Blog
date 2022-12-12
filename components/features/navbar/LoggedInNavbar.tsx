@@ -11,7 +11,7 @@ const LogedInNavbar = () => {
   return (
     <div className={styles.navbar}>
       <Link href="/">Home</Link>
-      <Link href='navbar/profilePage'>Profile</Link>
+      <Link href="./navbar/profilePage">Profile</Link>
       <button onClick={handleClick}>Log Out</button>
     </div>
   );

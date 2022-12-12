@@ -1,5 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { useState, createContext } from "react";
+import { DocumentData } from "firebase/firestore";
+import { useState, createContext, useEffect } from "react";
 import auth from "../../../firebase/auth";
 import {
   currentUserArticles,
@@ -10,30 +11,39 @@ import Navbar from "../navbar/Navbar";
 export const UserContext = createContext({
   userState: false,
   username: "",
-  articleList: {},
 });
 
 const Layout = ({ children }: any) => {
   const [userState, setUserState] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
-  const [articleList, setArticleList] = useState({});
+  const [articleList, setArticleList] = useState<DocumentData>();
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setUserState(true);
       currentUserDoc(auth.currentUser?.uid as string).then((data) => {
-        // const { user, articles } = data;
-        setUsername(data?.user as string);
-        // setArticleList(data?.articles.articles);
-        // console.log(data?.user as string);
+        setUsername(data?.username as string);
+      });
+      currentUserArticles(auth.currentUser?.uid as string).then((doc) => {
+        setArticleList(doc?.articles as DocumentData);
+        console.log(articleList);
       });
     } else {
       setUserState(false);
     }
   });
+  // useEffect(() => {
+  // currentUserArticles(auth.currentUser?.uid as string).then(
+  //   (doc) => {
+  //     setArticleList(doc?.articles as DocumentData);
+  //       console.log(articleList);
+  //     },
+  //     [articleList]
+  //   );
+  // });
 
   return (
-    <UserContext.Provider value={{ userState, username, articleList }}>
+    <UserContext.Provider value={{ userState, username }}>
       <div>
         <Navbar />
         <main>{children}</main>

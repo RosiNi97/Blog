@@ -1,6 +1,7 @@
 import {
   arrayUnion,
   doc,
+  DocumentData,
   getDoc,
   getFirestore,
   setDoc,
@@ -37,15 +38,7 @@ export const currentUserDoc = async (userUID: string) => {
     const userDataSnap = await getDoc(userDataRef);
     const userData = userDataSnap.data();
 
-    const articleRef = doc(db, "articles", userUID);
-    const articleSnap = await getDoc(articleRef);
-    const articlesData = articleSnap.data();
-
-    const data: { user: string; articles: any } = {
-      user: userData?.username as string,
-      articles: { articlesData },
-    };
-    return data;
+    return userDataSnap.data();
   } else return {};
 };
 
@@ -87,9 +80,12 @@ export const AddArticle = async (
 };
 
 export const currentUserArticles = async (userUID: string) => {
-  const docRef = doc(db, "articles", userUID);
-  const docSnap = await getDoc(docRef);
-  return docSnap.data();
+  if (userUID !== undefined) {
+    const docRef = doc(db, "articles", userUID);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data() as DocumentData;
+  }
+  return {};
 };
 
 export default db;
