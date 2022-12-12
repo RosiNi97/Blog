@@ -1,8 +1,8 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { DocumentData } from "firebase/firestore";
+import { doc, DocumentData, onSnapshot } from "firebase/firestore";
 import { useState, createContext, useEffect } from "react";
 import auth from "../../../firebase/auth";
-import {
+import db, {
   currentUserArticles,
   currentUserDoc,
 } from "../../../firebase/firestore";
@@ -24,22 +24,22 @@ const Layout = ({ children }: any) => {
       currentUserDoc(auth.currentUser?.uid as string).then((data) => {
         setUsername(data?.username as string);
       });
-      currentUserArticles(auth.currentUser?.uid as string).then((doc) => {
-        setArticleList(doc?.articles as DocumentData);
-        console.log(articleList);
-      });
     } else {
       setUserState(false);
     }
   });
-  // useEffect(() => {
-  // currentUserArticles(auth.currentUser?.uid as string).then(
-  //   (doc) => {
-  //     setArticleList(doc?.articles as DocumentData);
-  //       console.log(articleList);
-  //     },
-  //     [articleList]
-  //   );
+
+  // currentUserArticles(auth.currentUser?.uid as string).then((doc) => {
+  //   setArticleList(doc?.articles as DocumentData);
+  //   console.log(articleList);
+  // });
+
+  // onSnapshot(doc(db, "articles", auth.currentUser?.uid as string), (doc) => {
+  //   if (doc !== undefined) {
+  //     setArticleList(doc.data());
+  //     console.log(articleList);
+  //   }
+  //   return {};
   // });
 
   return (
