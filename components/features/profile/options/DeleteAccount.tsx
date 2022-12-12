@@ -10,6 +10,7 @@ const DeleteAccount = () => {
     await deleteDoc(doc(db, "articles", user?.uid as string)).then(() => {
       deleteDoc(doc(db, "users", user?.uid as string));
       deleteUser(user);
+      routerHome();
     });
   };
   const handleNo = () => {
