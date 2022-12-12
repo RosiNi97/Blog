@@ -1,14 +1,17 @@
-import { useContext } from "react";
-import { UserContext } from "../../layout/Layuot";
-import { ArticleContext } from "../UserPosts";
+const ArticleTemplate = (props: any) => {
+  const articleList = props.articleList;
 
-const ArticleTemplate = (props) => {
-  // const { articleList } = useContext(ArticleContext);
-  return props.articleList.articles.map((article: any) => {
+  return (
     <div>
-      <h3>{article.title}</h3>
-      <p>{article.contents}</p>
-    </div>;
-  });
+      {articleList.map((article: any, key: number) => {
+        return (
+          <div key={key}>
+            <h3>Title : {article.title}</h3>
+            <p>{article.contents}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 export default ArticleTemplate;
