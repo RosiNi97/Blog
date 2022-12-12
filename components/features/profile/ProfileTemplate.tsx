@@ -10,9 +10,7 @@ const ProfileTemplate = () => {
       <div className="userProfile">Hello, {username}</div>
       <h1>OPTIONS:</h1>
       <Link href="/navbar/changePassword">Change Password</Link>
-      <Link href=""></Link>
-      <li>Change Password</li>
-      <li>Delete Account</li>
+      <Link href="/navbar/deleteAccount">Delete Account</Link>
     </div>
   );
 };
