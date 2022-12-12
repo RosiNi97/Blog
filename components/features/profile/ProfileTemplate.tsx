@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "../layout/Layuot";
 
@@ -7,11 +8,11 @@ const ProfileTemplate = () => {
   return (
     <div>
       <div className="userProfile">Hello, {username}</div>
-      <ul className="userOptions">
-        OPTIONS:
-        <li>Change Password</li>
-        <li>Delete Account</li>
-      </ul>
+      <h1>OPTIONS:</h1>
+      <Link href="/navbar/changePassword">Change Password</Link>
+      <Link href=""></Link>
+      <li>Change Password</li>
+      <li>Delete Account</li>
     </div>
   );
 };
