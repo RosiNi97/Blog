@@ -11,39 +11,35 @@ import Navbar from "../navbar/Navbar";
 export const UserContext = createContext({
   userState: false,
   username: "",
+  articleList: [{}],
 });
 
 const Layout = ({ children }: any) => {
   const [userState, setUserState] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
-  const [articleList, setArticleList] = useState<DocumentData>();
+  const [articleList, setArticleList] = useState<Array<object>>([{}]);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setUserState(true);
       currentUserDoc(auth.currentUser?.uid as string).then((data) => {
         setUsername(data?.username as string);
+        console.log(username);
+      });
+      const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
+      onSnapshot(articleRef, (doc) => {
+        if (doc !== undefined) {
+          const docData = doc.data();
+          setArticleList(docData?.articles as Array<object>);
+        }
       });
     } else {
       setUserState(false);
     }
   });
 
-  // currentUserArticles(auth.currentUser?.uid as string).then((doc) => {
-  //   setArticleList(doc?.articles as DocumentData);
-  //   console.log(articleList);
-  // });
-
-  // onSnapshot(doc(db, "articles", auth.currentUser?.uid as string), (doc) => {
-  //   if (doc !== undefined) {
-  //     setArticleList(doc.data());
-  //     console.log(articleList);
-  //   }
-  //   return {};
-  // });
-
   return (
-    <UserContext.Provider value={{ userState, username }}>
+    <UserContext.Provider value={{ userState, username, articleList }}>
       <div>
         <Navbar />
         <main>{children}</main>

@@ -1,24 +1,21 @@
 import { doc, DocumentData, onSnapshot } from "firebase/firestore";
 import Link from "next/link";
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import auth from "../../../firebase/auth";
 import db from "../../../firebase/firestore";
+import { UserContext } from "../layout/Layuot";
 import ArticleTemplate from "./articles/ArticleTemplate";
 
-export const ArticleContext = createContext({ articleList: [{}] });
+// export const ArticleContext = createContext({ articleList: [{}] });
 
 const UserPostList = () => {
-  const [articleList, setArticleList] = useState([{}]);
-
-  useEffect(() => {
-    onSnapshot(doc(db, "articles", auth.currentUser?.uid as string), (doc) => {
-      if (doc !== undefined) {
-        const docData = doc.data();
-        setArticleList(docData?.articles as Array<object>);
-      }
-      return {};
-    });
-  }, []);
+  const { articleList } = useContext(UserContext);
 
   return (
     <div className="articles">
