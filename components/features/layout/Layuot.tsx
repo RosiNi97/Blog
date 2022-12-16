@@ -9,6 +9,7 @@ import db, {
 import Navbar from "../navbar/Navbar";
 import UserContext, { UserContextProvider } from "../context/UserContext";
 import { useContext } from "react";
+import { UserContextType } from "../../../types/types";
 
 // export const UserContext = createContext({
 //   userState: false,
@@ -17,7 +18,7 @@ import { useContext } from "react";
 // });
 
 const Layout = ({ children }: any) => {
-  const { GetUsername, GetUserState, GetArticleList } = useContext(UserContext);
+  const { GetUserState } = useContext(UserContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -50,14 +51,10 @@ const Layout = ({ children }: any) => {
   // }, []);
 
   return (
-    <UserContextProvider>
-      {/* <UserContext.Provider value={{ userState, username, articleList }}> */}
-      <div>
-        <Navbar />
-        <main>{children}</main>
-      </div>
-      {/* </UserContext.Provider> */}
-    </UserContextProvider>
+    <div>
+      <Navbar />
+      <main>{children}</main>
+    </div>
   );
 };
 export default Layout;

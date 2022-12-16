@@ -1,8 +1,11 @@
+import * as React from "react";
 import { createContext, useState } from "react";
 import { UserContextType } from "../../../types/types";
 import ArticleList from "../profile/articles/ArticleList";
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+const UserContext = React.createContext<UserContextType>({
+  GetUserState: () => false,
+});
 //   userState,
 //   username,
 //   articleList,

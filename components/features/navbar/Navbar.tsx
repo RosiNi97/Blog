@@ -1,7 +1,7 @@
 import LogedInNavbar from "./LoggedInNavbar";
 import LogedOutNavbar from "./LoggedOutNavbar";
 import { useContext } from "react";
-import { UserContext } from "../layout/Layuot";
+import UserContext from "../context/UserContext";
 
 const Navbar = () => {
   const { userState } = useContext(UserContext);
