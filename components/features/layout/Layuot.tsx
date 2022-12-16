@@ -7,44 +7,48 @@ import db, {
   currentUserDoc,
 } from "../../../firebase/firestore";
 import Navbar from "../navbar/Navbar";
+import { UserContextProvider } from "../context/UserContext";
 
-export const UserContext = createContext({
-  userState: false,
-  username: "",
-  articleList: [{}],
-});
+// export const UserContext = createContext({
+//   userState: false,
+//   username: "",
+//   articleList: [{}],
+// });
 
 const Layout = ({ children }: any) => {
   const [userState, setUserState] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [articleList, setArticleList] = useState<Array<object>>([{}]);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUserState(true);
-      currentUserDoc(auth.currentUser?.uid as string).then((data) => {
-        setUsername(data?.username as string);
-        console.log(username);
-      });
-      const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
-      onSnapshot(articleRef, (doc) => {
-        if (doc !== undefined) {
-          const docData = doc.data();
-          setArticleList(docData?.articles as Array<object>);
-        }
-      });
-    } else {
-      setUserState(false);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserState(true);
+        currentUserDoc(auth.currentUser?.uid as string).then((data) => {
+          setUsername(data?.username as string);
+        });
+        const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
+        onSnapshot(articleRef, (doc) => {
+          if (doc !== undefined) {
+            const docData = doc.data();
+            setArticleList(docData?.articles as Array<object>);
+          }
+        });
+      } else {
+        setUserState(false);
+      }
+    });
+  }, []);
 
   return (
-    <UserContext.Provider value={{ userState, username, articleList }}>
+    <UserContextProvider>
+      {/* <UserContext.Provider value={{ userState, username, articleList }}> */}
       <div>
         <Navbar />
         <main>{children}</main>
       </div>
-    </UserContext.Provider>
+      {/* </UserContext.Provider> */}
+    </UserContextProvider>
   );
 };
 export default Layout;
