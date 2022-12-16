@@ -1,7 +1,14 @@
 import { createContext, useState } from "react";
 import { UserContextType } from "../../../types/types";
+import ArticleList from "../profile/articles/ArticleList";
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
+//   userState,
+//   username,
+//   articleList,
+//   GetUserState,
+//   GetArticleList,
+//   GetUSername
 
 export const UserContextProvider = ({ children }: any) => {
   const [userState, setUserState] = useState<boolean>(false);

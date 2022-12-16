@@ -17,14 +17,17 @@ import { useContext } from "react";
 // });
 
 const Layout = ({ children }: any) => {
-  const {
-    username,
-    userState,
-    articleList,
-    GetUsername,
-    GetUserState,
-    GetArticleList,
-  } = useContext(UserContext);
+  const { GetUsername, GetUserState, GetArticleList } = useContext(UserContext);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        GetUserState(true);
+      } else {
+        GetUserState(false);
+      }
+    });
+  }, []);
 
   // useEffect(() => {
   //   onAuthStateChanged(auth, (user) => {
