@@ -7,7 +7,8 @@ import db, {
   currentUserDoc,
 } from "../../../firebase/firestore";
 import Navbar from "../navbar/Navbar";
-import { UserContextProvider } from "../context/UserContext";
+import UserContext, { UserContextProvider } from "../context/UserContext";
+import { useContext } from "react";
 
 // export const UserContext = createContext({
 //   userState: false,
@@ -16,29 +17,34 @@ import { UserContextProvider } from "../context/UserContext";
 // });
 
 const Layout = ({ children }: any) => {
-  const [userState, setUserState] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
-  const [articleList, setArticleList] = useState<Array<object>>([{}]);
+  const {
+    username,
+    userState,
+    articleList,
+    GetUsername,
+    GetUserState,
+    GetArticleList,
+  } = useContext(UserContext);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserState(true);
-        currentUserDoc(auth.currentUser?.uid as string).then((data) => {
-          setUsername(data?.username as string);
-        });
-        const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
-        onSnapshot(articleRef, (doc) => {
-          if (doc !== undefined) {
-            const docData = doc.data();
-            setArticleList(docData?.articles as Array<object>);
-          }
-        });
-      } else {
-        setUserState(false);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUserState(true);
+  //       currentUserDoc(auth.currentUser?.uid as string).then((data) => {
+  //         setUsername(data?.username as string);
+  //       });
+  //       const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
+  //       onSnapshot(articleRef, (doc) => {
+  //         if (doc !== undefined) {
+  //           const docData = doc.data();
+  //           setArticleList(docData?.articles as Array<object>);
+  //         }
+  //       });
+  //     } else {
+  //       setUserState(false);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <UserContextProvider>
