@@ -9,12 +9,6 @@ const UserContext = React.createContext<UserContextType>({
   GetUsername: () => "",
   GetArticleList: () => [{}],
 });
-//   userState,
-//   username,
-//   articleList,
-//   GetUserState,
-//   GetArticleList,
-//   GetUSername
 
 export const UserContextProvider = ({ children }: any) => {
   const [userState, setUserState] = useState<boolean>(false);

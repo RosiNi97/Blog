@@ -32,7 +32,7 @@ export const AddUser = async (
   }
 };
 
-export const currentUserDoc = async (userUID: string) => {
+export const currentUserDoc = async (userUID: string | undefined) => {
   if (userUID !== undefined) {
     const userDataRef = doc(db, "usersDB", userUID);
     const userDataSnap = await getDoc(userDataRef);

@@ -2,27 +2,22 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, DocumentData, onSnapshot } from "firebase/firestore";
 import { useState, createContext, useEffect } from "react";
 import auth from "../../../firebase/auth";
-import db, {
-  currentUserArticles,
-  currentUserDoc,
-} from "../../../firebase/firestore";
+import db, { currentUserDoc } from "../../../firebase/firestore";
 import Navbar from "../navbar/Navbar";
 import UserContext, { UserContextProvider } from "../context/UserContext";
 import { useContext } from "react";
 
-// export const UserContext = createContext({
-//   userState: false,
-//   username: "",
-//   articleList: [{}],
-// });
-
 const Layout = ({ children }: any) => {
-  const { GetUserState, GetArticleList } = useContext(UserContext);
+  const { GetUserState, GetArticleList, GetUsername } = useContext(UserContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         GetUserState(true);
+        const currentUID = auth.currentUser?.uid;
+        currentUserDoc(currentUID).then((data) => {
+          GetUsername(data?.username);
+        });
         const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
         onSnapshot(articleRef, (doc) => {
           if (doc !== undefined) {
