@@ -7,6 +7,7 @@ import UserContext from "../../context/UserContext";
 
 const CreateArticle = () => {
   const { username } = useContext(UserContext);
+
   const handleArticleSubmit = (e: BaseSyntheticEvent) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -19,6 +20,7 @@ const CreateArticle = () => {
     e.target.reset();
     routerProfile();
   };
+
   return (
     <form name="create article" onSubmit={handleArticleSubmit}>
       <h1>Create Article</h1>

@@ -9,7 +9,6 @@ import db, {
 import Navbar from "../navbar/Navbar";
 import UserContext, { UserContextProvider } from "../context/UserContext";
 import { useContext } from "react";
-import { UserContextType } from "../../../types/types";
 
 // export const UserContext = createContext({
 //   userState: false,
@@ -18,12 +17,19 @@ import { UserContextType } from "../../../types/types";
 // });
 
 const Layout = ({ children }: any) => {
-  const { GetUserState } = useContext(UserContext);
+  const { GetUserState, GetArticleList } = useContext(UserContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         GetUserState(true);
+        const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
+        onSnapshot(articleRef, (doc) => {
+          if (doc !== undefined) {
+            const docData = doc.data();
+            GetArticleList(docData?.articles);
+          }
+        });
       } else {
         GetUserState(false);
       }

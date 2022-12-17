@@ -9,7 +9,7 @@ export interface UserContextType {
   username: string;
   userState?: boolean;
   articleList?: Array<object>;
-  GetUsername?: (username: string) => void;
+  GetUsername: (username: string) => void;
   GetUserState: (user: boolean) => void;
-  GetArticleList?: (articles: Array<object>) => void;
+  GetArticleList: (articles: Array<object>) => void;
 }
