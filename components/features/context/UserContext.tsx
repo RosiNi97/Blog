@@ -4,7 +4,10 @@ import { UserContextType } from "../../../types/types";
 import ArticleList from "../profile/articles/ArticleList";
 
 const UserContext = React.createContext<UserContextType>({
+  username: "",
   GetUserState: () => false,
+  GetUsername: () => "",
+  GetArticleList: () => [{}],
 });
 //   userState,
 //   username,

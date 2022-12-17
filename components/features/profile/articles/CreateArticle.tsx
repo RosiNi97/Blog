@@ -3,7 +3,7 @@ import auth from "../../../../firebase/auth";
 import { AddArticle } from "../../../../firebase/firestore";
 import { routerProfile } from "../../routes/Routes";
 import { useContext } from "react";
-import { UserContext } from "../../layout/Layuot";
+import UserContext from "../../context/UserContext";
 
 const CreateArticle = () => {
   const { username } = useContext(UserContext);

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useContext } from "react";
-import { UserContext } from "../layout/Layuot";
+import UserContext from "../context/UserContext";
 
 const ProfileTemplate = () => {
   const { username } = useContext(UserContext);

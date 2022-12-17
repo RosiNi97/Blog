@@ -6,7 +6,7 @@ interface LayoutType {
 export default LayoutType;
 
 export interface UserContextType {
-  username?: string;
+  username: string;
   userState?: boolean;
   articleList?: Array<object>;
   GetUsername?: (username: string) => void;
