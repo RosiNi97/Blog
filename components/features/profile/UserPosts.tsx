@@ -22,7 +22,7 @@ const UserPostList = () => {
       <h1>Article List</h1>
       <Link href={"/navbar/createArticle"}>Create Article</Link>
       <div>
-        <ArticleTemplate articleList={articleList} />
+        <ArticleTemplate />
       </div>
     </div>
   );

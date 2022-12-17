@@ -1,7 +1,9 @@
-const ArticleTemplate = (props: any) => {
-  const articleList = props.articleList;
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
+const ArticleTemplate = () => {
+  const { articleList } = useContext(UserContext);
 
-  if (articleList !== undefined) {
+  if (articleList !== undefined && articleList.length > 1) {
     return (
       <div>
         {articleList.map((article: any, key: number) => {

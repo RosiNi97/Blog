@@ -5,9 +5,10 @@ import ArticleList from "../profile/articles/ArticleList";
 
 const UserContext = React.createContext<UserContextType>({
   username: "",
+  articleList: undefined,
   GetUserState: () => false,
   GetUsername: () => "",
-  GetArticleList: () => [{}],
+  GetArticleList: () => [],
 });
 
 export const UserContextProvider = ({ children }: any) => {
