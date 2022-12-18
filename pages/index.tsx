@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import BlogCollection from "./navbar/blogcollection";
+import BlogCollection from "../components/features/home/BlogCollection";
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -9,7 +10,7 @@ export default function Home() {
         <meta name="blog" content="blog" />
       </Head>
       <h1>HOME PAGE</h1>
-      <BlogCollection/>
+      <BlogCollection />
     </div>
   );
 }
