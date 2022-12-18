@@ -1,11 +1,7 @@
 import LoginUser from "../../components/features/login/LoginUser";
 
 const LoginPage = () => {
-  return (
-    <div>
-      <LoginUser />
-    </div>
-  );
+  return <LoginUser />;
 };
 
 export default LoginPage;

@@ -1,7 +1,7 @@
 import router from "next/router";
 
 export const routerLogin = () => {
-  router.push("/navbar/loginPage");
+  router.push("/profile/login-page");
 };
 
 export const routerHome = () => {
@@ -9,5 +9,5 @@ export const routerHome = () => {
 };
 
 export const routerProfile = () => {
-  router.push("/navbar/profilePage");
+  router.push("/profile/profile-page");
 };

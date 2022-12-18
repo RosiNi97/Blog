@@ -20,7 +20,7 @@ const UserPostList = () => {
   return (
     <div className="articles">
       <h1>Article List</h1>
-      <Link href={"/navbar/createArticle"}>Create Article</Link>
+      <Link href={"/profile/create-article"}>Create Article</Link>
       <div>
         <ArticleTemplate />
       </div>

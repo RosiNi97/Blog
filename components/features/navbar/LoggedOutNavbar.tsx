@@ -5,7 +5,7 @@ const LogedOutNavbar = () => {
   return (
     <div className={styles.navbar}>
       <Link href="/">Home</Link>
-      <Link href="/navbar/loginPage">Login</Link>
+      <Link href="/profile/login-page">Login</Link>
     </div>
   );
 };

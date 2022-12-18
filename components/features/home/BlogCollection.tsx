@@ -10,7 +10,7 @@ export default function BlogCollection() {
     getBlogCollections()
       .then((result) => {
         result.forEach((d) => {
-          setBlogs([...blogs, d.data()]);
+          setBlogs([d.data()]);
         });
       })
       .catch((error) => error);

@@ -1,10 +1,6 @@
 import RegisterUser from "../../components/features/register/RegisterUser";
 
 const RegisterPage = () => {
-  return (
-    <div>
-      <RegisterUser />
-    </div>
-  );
+  return <RegisterUser />;
 };
 export default RegisterPage;
