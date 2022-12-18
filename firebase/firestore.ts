@@ -10,6 +10,7 @@ import {
 import app from "./firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import auth, { currentUserUid } from "./auth";
+import BlogCollection from "../pages/navbar/blogcollection";
 
 export const db = getFirestore(app);
 
@@ -31,6 +32,10 @@ export const AddUser = async (
     console.error("Error adding document: ", e);
   }
 };
+
+export const getblogcollections = async () => {
+  return await addDocs(collection(db, "blogs"));
+}
 
 export const currentUserDoc = async (userUID: string | undefined) => {
   if (userUID !== undefined) {
@@ -89,3 +94,4 @@ export const currentUserArticles = async (userUID: string) => {
 };
 
 export default db;
+
