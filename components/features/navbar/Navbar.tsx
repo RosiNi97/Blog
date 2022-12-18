@@ -1,14 +1,16 @@
-import Link from "next/link";
-import styles from "../../../styles/Home.module.css";
+import LogedInNavbar from "./LoggedInNavbar";
+import LogedOutNavbar from "./LoggedOutNavbar";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 const Navbar = () => {
-  return (
-    <div className={styles.navbar}>
-      <Link href="/">Home</Link>
-      <Link href="/navbar/loginPage">Login</Link>
-      <Link href="/navbar/registerPage">Register</Link>
-    </div>
-  );
+  const { userState } = useContext(UserContext);
+
+  if (userState) {
+    return <LogedInNavbar />;
+  } else {
+    return <LogedOutNavbar />;
+  }
 };
 
 export default Navbar;

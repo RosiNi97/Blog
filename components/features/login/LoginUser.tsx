@@ -1,5 +1,8 @@
+import router from "next/router";
 import { BaseSyntheticEvent } from "react";
-import auth, { loginEmailPass } from "../../../firebase/auth";
+import { loginEmailPass } from "../../../firebase/auth";
+import { routerProfile } from "../routes/Routes";
+
 import LoginForm from "./Login";
 
 export default function LoginUser() {
@@ -12,8 +15,8 @@ export default function LoginUser() {
     const password = form.get("password") as string;
 
     loginEmailPass(email, password);
-
     e.target.reset();
   };
+
   return <LoginForm HandleLogin={handleLogin} />;
 }
