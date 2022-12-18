@@ -15,7 +15,6 @@ export const AddUser = async (email: string, userID: string) => {
   }
 };
 
-export const getblogcollections = async () => {
-return await getDocs(collection(db, "blogs"));
-}
-
+export const getBlogCollections = async () => {
+  return await getDocs(collection(db, "blogs"));
+};
