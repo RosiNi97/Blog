@@ -21,8 +21,9 @@ export const UserContextProvider = ({ children }: any) => {
   const getUserState = (user: boolean) => {
     setUserState(user);
   };
-  const getArticleList = (articles: Array<IArticle>) => {
-    setArticleList(articles);
+  const getArticleList = (articles: IArticle) => {
+    setArticleList([...[articles]]);
+    console.log(articleList);
   };
 
   return (
