@@ -4,6 +4,7 @@ import { IArticle, UserContextType } from "../../../types/types";
 
 const UserContext = React.createContext<UserContextType>({
   username: "",
+  userState: false,
   articleList: undefined,
   getUserState: () => false,
   getUsername: () => "",
@@ -23,7 +24,6 @@ export const UserContextProvider = ({ children }: any) => {
   };
   const getArticleList = (articles: IArticle) => {
     setArticleList([...[articles]]);
-    console.log(articleList);
   };
 
   return (

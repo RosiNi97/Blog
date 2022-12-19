@@ -62,7 +62,7 @@ export const AddArticle = async (
     await addDoc(docRef, {
       title: title,
       contents: contents,
-      id: userUID + title,
+      id: userUID,
       videoID: videoID,
       username: username,
     });

@@ -25,17 +25,16 @@ const Navbar = () => {
           getUsername(data?.username);
         });
         const blogRef = collection(db, "blogs");
-        const docSnap = await getDocs(blogRef);
-        docSnap.forEach(async (blog: any) => {
-          getArticleList(blog.data());
-        });
-        // onSnapshot(blogRef, async (docs) => {
-        //   docs.forEach((blog: any) => {
-        //     const blogData = blog.data();
-
-        //     getArticleList([...[blogData]]);
-        //   });
+        // const docSnap = await getDocs(blogRef);
+        // docSnap.forEach((blog) => {
+        //   getArticleList(blog.data() as IArticle);
         // });
+        onSnapshot(blogRef, (snapshot) => {
+          snapshot.docs.forEach((blog: any) => {
+            const blogData = blog.data();
+            getArticleList(blogData);
+          });
+        });
       } else {
         getUserState(false);
       }

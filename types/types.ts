@@ -7,7 +7,7 @@ export default LayoutType;
 
 export interface UserContextType {
   username: string;
-  userState?: boolean;
+  userState: boolean;
   articleList: Array<IArticle> | undefined;
   getUsername: (username: string) => void;
   getUserState: (user: boolean) => void;
