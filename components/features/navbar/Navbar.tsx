@@ -5,29 +5,30 @@ import UserContext from "../context/UserContext";
 import { onAuthStateChanged } from "firebase/auth";
 import auth from "../../../firebase/auth";
 import db, { currentUserDoc } from "../../../firebase/firestore";
-import { doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 
 const Navbar = () => {
-  const { GetUserState, GetArticleList, GetUsername, userState } =
+  const { getUserState, getArticleList, getUsername, userState } =
     useContext(UserContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        GetUserState(true);
+        getUserState(true);
         const currentUID = auth.currentUser?.uid;
         currentUserDoc(currentUID).then((data) => {
-          GetUsername(data?.username);
+          getUsername(data?.username);
         });
-        const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
-        onSnapshot(articleRef, (doc) => {
+        const blogRef = collection(db, "docs");
+        onSnapshot(blogRef, (doc) => {
           if (doc !== undefined) {
-            const docData = doc.data();
-            GetArticleList(docData?.articles);
+            console.log(doc.docs);
+            const docData = doc;
+            // getArticleList();
           }
         });
       } else {
-        GetUserState(false);
+        getUserState(false);
       }
     });
   }, []);

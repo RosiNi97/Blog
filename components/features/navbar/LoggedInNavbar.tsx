@@ -1,12 +1,12 @@
 import Link from "next/link";
+import router from "next/router";
 import auth from "../../../firebase/auth";
 import styles from "../../../styles/Home.module.css";
-import { routerLogin } from "../routes/Routes";
 
 const LogedInNavbar = () => {
   const handleClick = () => {
     auth.signOut();
-    routerLogin();
+    router.push("./navbar/loginPage");
   };
   return (
     <div className={styles.navbar}>

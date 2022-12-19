@@ -9,7 +9,6 @@ export default function Home() {
         <title>Blog</title>
         <meta name="blog" content="blog" />
       </Head>
-      <h1>HOME PAGE</h1>
       <BlogCollection />
     </div>
   );

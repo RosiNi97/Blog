@@ -11,6 +11,7 @@ export default function BlogCollection() {
       .then((result) => {
         result.forEach((d) => {
           setBlogs([...blogs, d.data()]);
+          console.log(d.data());
         });
       })
       .catch((error) => error);
@@ -20,9 +21,18 @@ export default function BlogCollection() {
     <div>
       {blogs
         ? blogs.map((b) => (
-            <div key={b.title}>
-              <h1>{b.title}</h1>
-              <div>{b.video}</div>
+            <div key={b.id}>
+              <h3>Title : {b.title}</h3>
+              <p>{b.contents}</p>
+              <iframe
+                width="853"
+                height="480"
+                src={`https://www.youtube.com/embed/${b.videoID}`}
+                frameBorder="1"
+                allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={b.title}
+              />
             </div>
           ))
         : null}

@@ -1,8 +1,8 @@
 import { deleteUser, User } from "firebase/auth";
 import { deleteDoc, doc } from "firebase/firestore";
+import router from "next/router";
 import auth from "../../../../firebase/auth";
 import db from "../../../../firebase/firestore";
-import { routerHome } from "../../routes/Routes";
 
 const DeleteAccount = () => {
   const user = auth.currentUser as User;
@@ -10,11 +10,11 @@ const DeleteAccount = () => {
     await deleteDoc(doc(db, "articles", user?.uid as string)).then(() => {
       deleteDoc(doc(db, "users", user?.uid as string));
       deleteUser(user);
-      routerHome();
+      router.push("/");
     });
   };
   const handleNo = () => {
-    routerHome();
+    router.push("/");
   };
   return (
     <div>

@@ -8,8 +8,16 @@ export default LayoutType;
 export interface UserContextType {
   username: string;
   userState?: boolean;
-  articleList: Array<object> | undefined;
-  GetUsername: (username: string) => void;
-  GetUserState: (user: boolean) => void;
-  GetArticleList: (articles: Array<object>) => void;
+  articleList: Array<IArticle> | undefined;
+  getUsername: (username: string) => void;
+  getUserState: (user: boolean) => void;
+  getArticleList: (articles: Array<IArticle>) => void;
+}
+
+export interface IArticle {
+  title: string;
+  contents: string;
+  videoID: string;
+  id: string;
+  username: string;
 }
