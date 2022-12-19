@@ -4,10 +4,11 @@ import UserContext from "../../context/UserContext";
 const BlogTemplate = () => {
   const { articleList } = useContext(UserContext);
 
-  if (articleList !== undefined && articleList.length > 1) {
+  if (articleList !== undefined) {
     return (
       <div>
         {articleList.map((article: IArticle) => {
+          console.log(article);
           return (
             <div key={article.id}>
               <h3>Title : {article.title}</h3>
@@ -16,7 +17,6 @@ const BlogTemplate = () => {
                 width="853"
                 height="480"
                 src={`https://www.youtube.com/embed/${article.videoID}`}
-                frameBorder="1"
                 allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={article.title}

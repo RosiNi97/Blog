@@ -11,7 +11,6 @@ export default function BlogCollection() {
       .then((result) => {
         result.forEach((d) => {
           setBlogs([...blogs, d.data()]);
-          console.log(d.data());
         });
       })
       .catch((error) => error);
@@ -28,7 +27,6 @@ export default function BlogCollection() {
                 width="853"
                 height="480"
                 src={`https://www.youtube.com/embed/${b.videoID}`}
-                frameBorder="1"
                 allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={b.title}
