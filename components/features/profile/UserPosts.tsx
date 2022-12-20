@@ -1,16 +1,9 @@
 import { doc, DocumentData, onSnapshot } from "firebase/firestore";
 import Link from "next/link";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import auth from "../../../firebase/auth";
-import db from "../../../firebase/firestore";
+import { useContext } from "react";
+
 import UserContext from "../context/UserContext";
-import ArticleTemplate from "./articles/ArticleTemplate";
+import BlogTemplate from "./blogs/BlogTemplate";
 
 // export const ArticleContext = createContext({ articleList: [{}] });
 
@@ -22,7 +15,7 @@ const UserPostList = () => {
       <h1>Article List</h1>
       <Link href={"/navbar/createArticle"}>Create Article</Link>
       <div>
-        <ArticleTemplate />
+        <BlogTemplate />
       </div>
     </div>
   );

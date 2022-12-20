@@ -4,30 +4,40 @@ import { useContext, useEffect } from "react";
 import UserContext from "../context/UserContext";
 import { onAuthStateChanged } from "firebase/auth";
 import auth from "../../../firebase/auth";
-import db, { currentUserDoc } from "../../../firebase/firestore";
-import { doc, onSnapshot } from "firebase/firestore";
+import db, {
+  currentUserDoc,
+  getBlogCollections,
+} from "../../../firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { IArticle } from "../../../types/types";
+import { async } from "@firebase/util";
 
 const Navbar = () => {
-  const { GetUserState, GetArticleList, GetUsername, userState } =
+  const { getUserState, getArticleList, setUsername, userState, articleList } =
     useContext(UserContext);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    return onAuthStateChanged(auth, async (user) => {
       if (user) {
-        GetUserState(true);
+        getUserState(true);
         const currentUID = auth.currentUser?.uid;
         currentUserDoc(currentUID).then((data) => {
-          GetUsername(data?.username);
+          setUsername(data?.username);
         });
-        const articleRef = doc(db, "articles", auth.currentUser?.uid as string);
-        onSnapshot(articleRef, (doc) => {
-          if (doc !== undefined) {
-            const docData = doc.data();
-            GetArticleList(docData?.articles);
-          }
+        const blogRef = collection(db, "blogs");
+        // const docSnap = await getDocs(blogRef);
+        // docSnap.forEach((blog) => {
+        //   getArticleList(blog.data() as IArticle);
+        // });
+        onSnapshot(blogRef, (snapshot) => {
+          const blogList: Array<IArticle> = [];
+          snapshot.docs.forEach((blog: any) => {
+            blogList.push(blog.data());
+          });
+          getArticleList(blogList);
         });
       } else {
-        GetUserState(false);
+        getUserState(false);
       }
     });
   }, []);

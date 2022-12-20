@@ -5,11 +5,7 @@ import {
   onAuthStateChanged,
   User,
 } from "firebase/auth";
-import {
-  routerHome,
-  routerLogin,
-  routerProfile,
-} from "../components/features/routes/Routes";
+import router from "next/router";
 import app from "./firebaseConfig";
 import { AddUser } from "./firestore";
 
@@ -17,7 +13,7 @@ const auth = getAuth(app);
 
 export const user: () => User = () => auth.currentUser as User;
 
-export const currentUserUid: string = auth.currentUser?.uid as string;
+export const currentUserUid = auth.currentUser?.uid;
 
 export const userLoggedIn: () => void | boolean = onAuthStateChanged(
   auth,
@@ -48,9 +44,9 @@ export const loginEmailPass = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err: any) {
     alert(err.message);
-    return routerLogin();
+    return router.push("./navbar/loginPage");
   }
-  routerHome();
+  router.push("/");
 };
 
 export default auth;
