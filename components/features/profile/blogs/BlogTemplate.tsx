@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { IArticle } from "../../../../types/types";
+import styles from "../../../../styles/Profile.module.css";
 import UserContext from "../../context/UserContext";
 const BlogTemplate = () => {
   const { userBlogsList } = useContext(UserContext);
 
   if (userBlogsList !== undefined && userBlogsList?.length > 0) {
     return (
-      <div>
+      <div className={styles.blogs}>
         {userBlogsList.map((article) => (
           <div key={article.id + article.title}>
             <h3>Title : {article.title}</h3>

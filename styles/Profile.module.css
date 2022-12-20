@@ -22,3 +22,17 @@
   background-color: #fffbee;
   text-decoration: underline;
 }
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: solid black 1px;
+  margin: 3rem;
+}
+.blogs {
+  border: solid black 1px;
+  display: flex;
+  justify-content: left;
+}
