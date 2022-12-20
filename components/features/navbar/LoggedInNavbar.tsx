@@ -11,7 +11,7 @@ import UserContext from "../context/UserContext";
 const LogedInNavbar = () => {
   const handleClick = () => {
     auth.signOut();
-    router.push("./loginPage");
+    router.push("/navbar/loginPage");
   };
   const { setUserBlogList } = useContext(UserContext);
 
