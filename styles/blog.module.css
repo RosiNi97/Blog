@@ -1,33 +1,36 @@
+.section{
+    display: block;
+    position: inherit;
+    float: left;
+    margin: auto;
+    padding: auto;
+}
 
-body{
-    height: 100%;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns:auto(header,article,aside,footer);
-    padding: auto;
-    margin:auto
+.img.section{
+    position: fixed;
+    float: right;
+    background: none;
+    width: 10px;
+    height: 15px;
+    box-shadow: 10px;
+    box-sizing: 15px;
 }
-header{
-    grid-area:auto;
-    height:auto;
-    margin:auto;
-    padding: auto;
+.aside{
+    position: fixed;
+    float: right;
+    background: none;
+    width: 10px;
+    height: 15px;
+    box-shadow: 10px;
+    box-sizing: 15px;
 }
-article{
-    grid-area:auto;
-    height:auto;
-    margin:auto;
-    padding: auto;
-}
-aside{
-grid-area:auto;
-height:auto;
-    margin:auto;
-    padding: auto;
-}
-footer{
-    grid-area:auto;
-    height:auto;
-    margin:auto;
-    padding: auto;
-}
+ .aside-summary{
+    position: fixed;
+    float: right;
+    background: none;
+    width: 10px;
+    height: 15px;
+    box-shadow: 10px;
+    box-sizing: 15px;
+ }
+
