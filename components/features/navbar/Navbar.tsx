@@ -13,16 +13,16 @@ import { IArticle } from "../../../types/types";
 import { async } from "@firebase/util";
 
 const Navbar = () => {
-  const { getUserState, getArticleList, getUsername, userState, articleList } =
+  const { getUserState, getArticleList, setUsername, userState, articleList } =
     useContext(UserContext);
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    return onAuthStateChanged(auth, async (user) => {
       if (user) {
         getUserState(true);
         const currentUID = auth.currentUser?.uid;
         currentUserDoc(currentUID).then((data) => {
-          getUsername(data?.username);
+          setUsername(data?.username);
         });
         const blogRef = collection(db, "blogs");
         // const docSnap = await getDocs(blogRef);
@@ -30,10 +30,11 @@ const Navbar = () => {
         //   getArticleList(blog.data() as IArticle);
         // });
         onSnapshot(blogRef, (snapshot) => {
+          const blogList: Array<IArticle> = [];
           snapshot.docs.forEach((blog: any) => {
-            const blogData = blog.data();
-            getArticleList(blogData);
+            blogList.push(blog.data());
           });
+          getArticleList(blogList);
         });
       } else {
         getUserState(false);

@@ -9,9 +9,11 @@ export default function BlogCollection() {
   useEffect(() => {
     getBlogCollections()
       .then((result) => {
+        const blogList: DocumentData[] = [];
         result.forEach((d) => {
-          setBlogs([...blogs, d.data()]);
+          blogList.push(d.data());
         });
+        setBlogs(blogList);
       })
       .catch((error) => error);
   }, []);
