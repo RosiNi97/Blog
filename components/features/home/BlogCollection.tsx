@@ -1,17 +1,13 @@
-import db, { getBlogCollections } from "../../../firebase/firestore";
+import db from "../../../firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import styles from "../../../styles/Blog.module.css";
-import {
-  collection,
-  DocumentData,
-  onSnapshot,
-  QuerySnapshot,
-} from "firebase/firestore";
 import UserContext from "../context/UserContext";
+import { collection, onSnapshot } from "firebase/firestore";
 import { IArticle } from "../../../types/types";
 
 export default function BlogCollection() {
-  const { articleList, getArticleList } = useContext(UserContext);
+  //const { articleList } = useContext(UserContext);
+  const { articleList, setArticleList } = useContext(UserContext);
 
   const blogRef = collection(db, "blogs");
 
@@ -21,7 +17,7 @@ export default function BlogCollection() {
       snapshot.docs.forEach((blog: any) => {
         blogList.push(blog.data());
       });
-      getArticleList(blogList);
+      setArticleList(blogList);
     });
   }, []);
 
@@ -29,7 +25,7 @@ export default function BlogCollection() {
     <div>
       {articleList
         ? articleList.map((b) => (
-            <div key={b.id}>
+            <div key={b.id + b.title}>
               <h3>Title : {b.title}</h3>
               <p>{b.contents}</p>
               <iframe
