@@ -1,9 +1,4 @@
-import { collection, onSnapshot } from "firebase/firestore";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
-import db from "../../../firebase/firestore";
-import { IArticle } from "../../../types/types";
-import UserContext from "../context/UserContext";
 import BlogTemplate from "./blogs/BlogTemplate";
 import ProfileTemplate from "./ProfileTemplate";
 
@@ -23,10 +18,12 @@ const Profile = () => {
   return (
     <div className="user-profile">
       <ProfileTemplate />
-      <h1>Article List</h1>
-      <Link href={"/navbar/createArticle"}>Create Article</Link>
-      <div>
-        <BlogTemplate />
+      <div className="articles">
+        <h1>Article List</h1>
+        <Link href={"/navbar/createArticle"}>Create Article</Link>
+        <div>
+          <BlogTemplate />
+        </div>
       </div>
     </div>
   );

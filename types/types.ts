@@ -9,8 +9,10 @@ export interface UserContextType {
   username: string;
   userState: boolean;
   articleList: Array<IArticle> | undefined;
+  userBlogsList: Array<IArticle> | undefined;
   setUsername: (username: string) => void;
   setUserState: (user: boolean) => void;
+  setUserBlogList: (articles: IArticle[]) => void;
   setArticleList: (articles: IArticle[]) => void;
 }
 

@@ -4,10 +4,7 @@ import { useContext, useEffect } from "react";
 import UserContext from "../context/UserContext";
 import { onAuthStateChanged } from "firebase/auth";
 import auth from "../../../firebase/auth";
-import db, {
-  currentUserDoc,
-  getBlogCollections,
-} from "../../../firebase/firestore";
+import { currentUserDoc } from "../../../firebase/firestore";
 
 const Navbar = () => {
   const { setUserState, setUsername, userState, articleList } =

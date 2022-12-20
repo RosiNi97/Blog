@@ -15,10 +15,10 @@ const CreateArticle = () => {
     const userUID = auth.currentUser?.uid;
     const title = form.get("title")?.toString();
     const contents = form.get("contents")?.toString();
-    const videoID = form.get("url")?.toString();
+    const videoURL = form.get("url")?.toString();
 
-    if (title && contents && videoID && userUID) {
-      AddArticle(title, contents, userUID, username, videoID);
+    if (title && contents && videoURL && userUID) {
+      AddArticle(title, contents, userUID, username, videoURL);
     }
     e.target.reset();
     router.push("./profilePage");

@@ -1,60 +1,44 @@
-import { getBlogCollections } from "../../../firebase/firestore";
-import { useEffect, useState } from "react";
-import styles from "../../../styles/blog.module.css";
-import { DocumentData } from "firebase/firestore";
+import db from "../../../firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import styles from "../../../styles/Blog.module.css";
+import UserContext from "../context/UserContext";
+import { collection, onSnapshot } from "firebase/firestore";
+import { IArticle } from "../../../types/types";
 
 export default function BlogCollection() {
-  const [blogs, setBlogs] = useState<DocumentData[]>([]);
+  //const { articleList } = useContext(UserContext);
+  const { articleList, setArticleList } = useContext(UserContext);
+
+  const blogRef = collection(db, "blogs");
 
   useEffect(() => {
-    getBlogCollections()
-      .then((result) => {
-        const blogList: DocumentData[] = [];
-        result.forEach((d) => {
-          blogList.push(d.data());
-        });
-        setBlogs(blogList);
-      })
-      .catch((error) => error);
+    return onSnapshot(blogRef, (snapshot) => {
+      const blogList: Array<IArticle> = [];
+      snapshot.docs.forEach((blog: any) => {
+        blogList.push(blog.data());
+      });
+      setArticleList(blogList);
+    });
   }, []);
 
   return (
     <div>
-      {blogs
-        ? blogs.map((b) => (
-            <div key={b.title}>
-              <h1>{b.title}</h1>
-              <div>{b.video}</div>
-              <div key={b.id}>
-                <h3>Title : {b.title}</h3>
-                <p>{b.contents}</p>
-                <section>
-                  <img
-                    src="https://t3.ftcdn.net/jpg/02/51/30/52/360_F_251305284_M7NOdeDXcXx44WkUWkHQijztn3yneroq.jpg"
-                    alt="working"
-                  />
-                </section>
-                <aside>
-                  <details>
-                    <summary>More</summary>
-                    <p></p>
-                  </details>
-                  <details>
-                    <summary>Social media</summary>
-                  </details>
-                </aside>
-                <iframe
-                  width="853"
-                  height="480"
-                  src={`https://www.youtube.com/embed/${b.videoID}`}
-                  allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={b.title}
-                />
-              </div>
+      {articleList
+        ? articleList.map((b) => (
+            <div key={b.id + b.title}>
+              <h3>Title : {b.title}</h3>
+              <p>{b.contents}</p>
+              <iframe
+                width="853"
+                height="480"
+                src={`https://www.youtube.com/embed/${b.videoID}`}
+                allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={b.title}
+              />
             </div>
           ))
-        : null}
+        : "No Content To Show"}
     </div>
   );
 }
