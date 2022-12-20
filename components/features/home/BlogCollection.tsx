@@ -1,27 +1,34 @@
-import { getBlogCollections } from "../../../firebase/firestore";
-import { useEffect, useState } from "react";
+import db, { getBlogCollections } from "../../../firebase/firestore";
+import { useContext, useEffect, useState } from "react";
 import styles from "../../../styles/Blog.module.css";
-import { DocumentData, QuerySnapshot } from "firebase/firestore";
+import {
+  collection,
+  DocumentData,
+  onSnapshot,
+  QuerySnapshot,
+} from "firebase/firestore";
+import UserContext from "../context/UserContext";
+import { IArticle } from "../../../types/types";
 
 export default function BlogCollection() {
-  const [blogs, setBlogs] = useState<DocumentData[]>([]);
+  const { articleList, getArticleList } = useContext(UserContext);
+
+  const blogRef = collection(db, "blogs");
 
   useEffect(() => {
-    getBlogCollections()
-      .then((result) => {
-        const blogList: DocumentData[] = [];
-        result.forEach((d) => {
-          blogList.push(d.data());
-        });
-        setBlogs(blogList);
-      })
-      .catch((error) => error);
+    return onSnapshot(blogRef, (snapshot) => {
+      const blogList: Array<IArticle> = [];
+      snapshot.docs.forEach((blog: any) => {
+        blogList.push(blog.data());
+      });
+      getArticleList(blogList);
+    });
   }, []);
 
   return (
     <div>
-      {blogs
-        ? blogs.map((b) => (
+      {articleList
+        ? articleList.map((b) => (
             <div key={b.id}>
               <h3>Title : {b.title}</h3>
               <p>{b.contents}</p>
@@ -35,7 +42,7 @@ export default function BlogCollection() {
               />
             </div>
           ))
-        : null}
+        : "No Content To Show"}
     </div>
   );
 }
