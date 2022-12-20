@@ -1,6 +1,6 @@
 import { getBlogCollections } from "../../../firebase/firestore";
 import { useEffect, useState } from "react";
-import styles from "../../styles/Blog.module.css";
+import styles from "../../../styles/Blog.module.css";
 import { DocumentData, QuerySnapshot } from "firebase/firestore";
 
 export default function BlogCollection() {
