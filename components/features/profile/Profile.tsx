@@ -3,18 +3,6 @@ import BlogTemplate from "./blogs/BlogTemplate";
 import ProfileTemplate from "./ProfileTemplate";
 
 const Profile = () => {
-  const { setArticleList } = useContext(UserContext);
-  const blogRef = collection(db, "blogs");
-  useEffect(() => {
-    return onSnapshot(blogRef, (snapshot) => {
-      const blogList: Array<IArticle> = [];
-      snapshot.docs.forEach((blog: any) => {
-        blogList.push(blog.data());
-      });
-      setArticleList(blogList);
-    });
-  }, []);
-
   return (
     <div className="user-profile">
       <ProfileTemplate />
