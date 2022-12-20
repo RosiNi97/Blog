@@ -55,9 +55,12 @@ export const AddArticle = async (
   username: string,
   videoURL: string
 ) => {
-  const idIndex = videoURL.indexOf("=");
-  const endIndex = videoURL.indexOf("&ab_channel=");
-  const videoID: string = videoURL.substring(idIndex + 1, endIndex);
+  // const idIndex = videoURL.indexOf("=");
+  // const endIndex = videoURL.indexOf("&ab_channel=");
+  const videoID: string = videoURL.substring(
+    videoURL.indexOf("=") + 1,
+    videoURL.indexOf("&ab_channel=")
+  );
   const docRef = collection(db, "blogs");
   // const docSnap = await getDoc(docRef);
 
