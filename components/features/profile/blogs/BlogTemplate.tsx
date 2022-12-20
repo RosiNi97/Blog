@@ -6,7 +6,7 @@ const BlogTemplate = () => {
 
   return (
     <div>
-      {articleList
+      {articleList?.length
         ? articleList.map((article) => (
             <div key={article.id}>
               <h3>Title : {article.title}</h3>

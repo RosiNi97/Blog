@@ -8,36 +8,21 @@ import db, {
   currentUserDoc,
   getBlogCollections,
 } from "../../../firebase/firestore";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
-import { IArticle } from "../../../types/types";
-import { async } from "@firebase/util";
 
 const Navbar = () => {
-  const { getUserState, getArticleList, setUsername, userState, articleList } =
+  const { setUserState, setUsername, userState, articleList } =
     useContext(UserContext);
 
   useEffect(() => {
     return onAuthStateChanged(auth, async (user) => {
       if (user) {
-        getUserState(true);
+        setUserState(true);
         const currentUID = auth.currentUser?.uid;
         currentUserDoc(currentUID).then((data) => {
           setUsername(data?.username);
         });
-        const blogRef = collection(db, "blogs");
-        // const docSnap = await getDocs(blogRef);
-        // docSnap.forEach((blog) => {
-        //   getArticleList(blog.data() as IArticle);
-        // });
-        onSnapshot(blogRef, (snapshot) => {
-          const blogList: Array<IArticle> = [];
-          snapshot.docs.forEach((blog: any) => {
-            blogList.push(blog.data());
-          });
-          getArticleList(blogList);
-        });
       } else {
-        getUserState(false);
+        setUserState(false);
       }
     });
   }, []);

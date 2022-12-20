@@ -10,8 +10,8 @@ export interface UserContextType {
   userState: boolean;
   articleList: Array<IArticle> | undefined;
   setUsername: (username: string) => void;
-  getUserState: (user: boolean) => void;
-  getArticleList: (articles: IArticle[]) => void;
+  setUserState: (user: boolean) => void;
+  setArticleList: (articles: IArticle[]) => void;
 }
 
 export interface IArticle {

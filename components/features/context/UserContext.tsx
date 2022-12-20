@@ -6,9 +6,9 @@ const UserContext = React.createContext<UserContextType>({
   username: "",
   userState: false,
   articleList: undefined,
-  getUserState: () => false,
+  setUserState: () => false,
   setUsername: () => "",
-  getArticleList: () => [],
+  setArticleList: () => [],
 });
 
 export const UserContextProvider = ({ children }: any) => {
@@ -16,15 +16,13 @@ export const UserContextProvider = ({ children }: any) => {
   const [username, setUsername] = useState<string>("");
   const [articleList, setArticleList] = useState<Array<IArticle>>([]);
 
-  const getUsername = (currentUsername: string) => {
-    setUsername(currentUsername);
-  };
+  // const getUsername = (currentUsername: string) => {
+  //   setUsername(currentUsername);
+  // };
   const getUserState = (user: boolean) => {
     setUserState(user);
   };
-  const getArticleList = (articles: IArticle[]) => {
-    setArticleList(articles);
-  };
+  // const getArticleList = (
 
   return (
     <UserContext.Provider
@@ -36,8 +34,12 @@ export const UserContextProvider = ({ children }: any) => {
           setUsername(currentUsername);
         },
         // getUsername,
-        getUserState,
-        getArticleList,
+        setUserState: (user: boolean) => {
+          setUserState(user);
+        },
+        setArticleList: (articles: IArticle[]) => {
+          setArticleList(articles);
+        },
       }}
     >
       {children}
