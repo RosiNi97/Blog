@@ -4,7 +4,7 @@ import styles from "../../../styles/Blog.module.css";
 import UserContext from "../context/UserContext";
 import { collection, onSnapshot } from "firebase/firestore";
 import { IArticle } from "../../../types/types";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
+
 
 export default function BlogCollection() {
   //const { articleList } = useContext(UserContext);
@@ -33,13 +33,13 @@ export default function BlogCollection() {
                 <p>{b.contents}</p>
           <div className={styles.blog}>
             <form onSubmit={props.HandleSubmit} name="BlogCollection">
-                <section className={styles.blog}>
+                <section >
                   <img
                     src="https://t3.ftcdn.net/jpg/02/51/30/52/360_F_251305284_M7NOdeDXcXx44WkUWkHQijztn3yneroq.jpg"
                     alt="working"
                   />
                 </section>
-                <aside className={styles.blog}>
+                <aside >
                   <details>
                     <summary>More</summary>
                     <p></p>
