@@ -31,7 +31,7 @@ export default function BlogCollection() {
               <div key={b.id}>
                 <h3>Title : {b.title}</h3>
                 <p>{b.contents}</p>
-          <div className={styles.blog}>
+          <div className={styles.Blog}>
             <form onSubmit={props.HandleSubmit} name="BlogCollection">
                 <section >
                   <img
