@@ -43,6 +43,9 @@ export default function BlogCollection() {
                   </details>
                   <details>
                     <summary>Social media</summary>
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="inst logo" width="60px;" height="60"/>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2175/2175193.png" alt="fb logo" width="60px;" height="60"/>
+                    <img src="https://cdn-icons-png.flaticon.com/512/466/466953.png" alt="pint logo" width="60px;" height="60"/>
                   </details>
                 </aside>
                 <iframe
