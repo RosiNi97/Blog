@@ -1,33 +1,24 @@
+.section{
+    position: inherit;
+    margin: auto;
+    padding: auto;
+}
 
-body{
-    height: 100%;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns:auto(header,article,aside,footer);
-    padding: auto;
-    margin:auto
+.section.img{
+    position: absolute;
+    float: right;   
 }
-header{
-    grid-area:auto;
-    height:auto;
-    margin:auto;
-    padding: auto;
-}
-article{
-    grid-area:auto;
-    height:auto;
-    margin:auto;
-    padding: auto;
-}
-aside{
-grid-area:auto;
-height:auto;
-    margin:auto;
-    padding: auto;
-}
-footer{
-    grid-area:auto;
-    height:auto;
-    margin:auto;
-    padding: auto;
-}
+details > summary {
+    padding: 4px;
+    width: 200px;
+    border: none;
+    box-shadow: 1px 1px 2px #bbbbbb;
+    cursor: pointer;
+  }
+  
+  details > p {
+    background-color: #eeeeee;
+    padding: 4px;
+    margin: 0;
+    box-shadow: 1px 1px 2px #bbbbbb;
+  }
