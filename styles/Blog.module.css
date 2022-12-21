@@ -8,7 +8,7 @@
     position: absolute;
     float: right;   
 }
-details > summary {
+.details.summary {
     padding: 4px;
     width: 200px;
     border: none;
@@ -16,7 +16,7 @@ details > summary {
     cursor: pointer;
   }
   
-  details > p {
+  .details.p {
     background-color: #eeeeee;
     padding: 4px;
     margin: 0;
