@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Profile.module.css";
 import Head from "next/head";
 import BlogCollection from "../components/features/home/BlogCollection";
 
