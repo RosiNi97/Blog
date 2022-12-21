@@ -32,7 +32,6 @@ export default function BlogCollection() {
                 <h3>Title : {b.title}</h3>
                 <p>{b.contents}</p>
           <div className={styles.Blog}>
-            <form onSubmit={props.HandleSubmit} name="BlogCollection">
                 <section >
                   <img
                     src="https://t3.ftcdn.net/jpg/02/51/30/52/360_F_251305284_M7NOdeDXcXx44WkUWkHQijztn3yneroq.jpg"
@@ -51,7 +50,6 @@ export default function BlogCollection() {
                     <img src="https://cdn-icons-png.flaticon.com/512/466/466953.png" alt="pint logo" width="60px;" height="60"/>
                   </details>
                 </aside>
-                </form>
                 </div>
                 <iframe
                   width="853"
