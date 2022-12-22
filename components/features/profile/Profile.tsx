@@ -6,7 +6,7 @@ const Profile = () => {
   return (
     <div className={styles.profile}>
       <ProfileTemplate />
-      <div className="articles">
+      <div className={styles.articles}>
         <h1>Article List</h1>
         <Link href={"/navbar/createArticle"} className={styles.create}>
           Create Article

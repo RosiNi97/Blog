@@ -8,7 +8,7 @@ const ProfileTemplate = () => {
   return (
     <div className={styles.options}>
       <h1 className="userProfile">Hello, {username}!</h1>
-      <h2>OPTIONS:</h2>
+      <h2>Profile Options:</h2>
       <div className={styles.links}>
         <Link href="/navbar/changePassword">Change Password</Link>
         <Link href="/navbar/deleteAccount">Delete Account</Link>
