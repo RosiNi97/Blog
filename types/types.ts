@@ -1,3 +1,4 @@
+import { FirestoreDataConverter } from "firebase/firestore";
 import { JsxElement } from "typescript";
 
 interface LayoutType {
@@ -22,4 +23,25 @@ export interface IArticle {
   videoID: string;
   id: string;
   username: string;
+  docID?: string;
 }
+export interface IProps {
+  children: JSX.Element;
+}
+
+export const dataConverter: FirestoreDataConverter<IArticle> = {
+  toFirestore: (model) => {
+    return { ...model };
+  },
+  fromFirestore: (snapshot) => {
+    const docData = snapshot.data();
+    return {
+      title: docData.title,
+      contents: docData.contents,
+      videoID: docData.videoID,
+      id: docData.id,
+      username: docData.username,
+      docID: docData.docID,
+    };
+  },
+};

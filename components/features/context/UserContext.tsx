@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { IArticle, UserContextType } from "../../../types/types";
+import { IArticle, IProps, UserContextType } from "../../../types/types";
 
 const UserContext = React.createContext<UserContextType>({
   userBlogsList: undefined,
@@ -13,7 +13,7 @@ const UserContext = React.createContext<UserContextType>({
   setUserBlogList: () => [],
 });
 
-export const UserContextProvider = ({ children }: any) => {
+export const UserContextProvider = ({ children }: IProps) => {
   const [userState, setUserState] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [articleList, setArticleList] = useState<Array<IArticle>>([]);
@@ -29,7 +29,6 @@ export const UserContextProvider = ({ children }: any) => {
         setUsername: (currentUsername: string) => {
           setUsername(currentUsername);
         },
-        // getUsername,
         setUserState: (user: boolean) => {
           setUserState(user);
         },

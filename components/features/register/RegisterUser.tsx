@@ -8,11 +8,12 @@ const RegisterUser = () => {
     e.preventDefault();
     const form = new FormData(e.target);
 
-    const username = form.get("username") as string;
-    const email = form.get("email") as string;
-    const password = form.get("password") as string;
-
-    registerWithEmailPassword(email, password, username);
+    const username = form.get("username")?.toString();
+    const email = form.get("email")?.toString();
+    const password = form.get("password")?.toString();
+    if (username && email && password) {
+      registerWithEmailPassword(email, password, username);
+    }
     e.target.reset();
     router.push("/");
   };

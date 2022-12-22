@@ -10,10 +10,13 @@ export default function LoginUser() {
 
     const form = new FormData(e.target);
 
-    const email = form.get("email") as string;
-    const password = form.get("password") as string;
-
-    loginEmailPass(email, password);
+    const email = form.get("email")?.toString();
+    const password = form.get("password")?.toString();
+    if (email && password) {
+      loginEmailPass(email, password);
+    } else {
+      alert("Invalid Information");
+    }
     e.target.reset();
   };
 

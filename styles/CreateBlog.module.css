@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: solid black 2px;
+  background-color: aliceblue;
+  margin: 4rem;
+  font-size: 40px;
+  min-width: 28rem;
+  padding: 2rem;
+}
+
+.form h1 {
+  text-align: center;
+}
+.form input {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 50px;
+}
+.button {
+  border-radius: 5px;
+  border: 1px;
+  background-color: burlywood;
+  margin-top: 1rem;
+}

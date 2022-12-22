@@ -1,6 +1,6 @@
 import {
   addDoc,
-  arrayUnion,
+  deleteDoc,
   doc,
   DocumentData,
   getDoc,
@@ -14,8 +14,6 @@ import { collection, getDocs } from "firebase/firestore";
 export const db = getFirestore(app);
 
 export const usersDB = collection(db, "usersDB");
-
-//User Doc Functions
 
 export const AddUser = async (
   email: string,
@@ -40,7 +38,6 @@ export const currentUserDoc = async (userUID: string | undefined) => {
   if (userUID !== undefined) {
     const userDataRef = doc(db, "usersDB", userUID);
     const userDataSnap = await getDoc(userDataRef);
-    const userData = userDataSnap.data();
 
     return userDataSnap.data();
   } else return {};
@@ -55,22 +52,36 @@ export const AddArticle = async (
   username: string,
   videoURL: string
 ) => {
-  const videoID: string = videoURL.substring(
-    videoURL.indexOf("=") + 1,
-    videoURL.indexOf("&ab_channel=")
-  );
+  const videoID = () => {
+    if (videoURL.indexOf("&ab_channel=") !== -1) {
+      return videoURL.substring(
+        videoURL.indexOf("=") + 1,
+        videoURL.indexOf("&ab_channel=")
+      );
+      // return videoID;
+    } else {
+      return videoURL.substring(videoURL.indexOf("?v=") + 3);
+    }
+  };
   const docRef = collection(db, "blogs");
 
   try {
     await addDoc(docRef, {
       title: title,
       contents: contents,
-      Uid: userUID,
-      videoID: videoID,
+      id: userUID,
+      videoID: videoID(),
       username: username,
+    }).then(async (document) => {
+      await updateDoc(doc(db, "blogs", document.id), { docID: document.id });
     });
   } catch (err) {
     console.log(err);
+  }
+};
+export const DeleteDoc = async (docID: string | undefined) => {
+  if (docID) {
+    await deleteDoc(doc(db, "blogs", docID));
   }
 };
 
