@@ -1,6 +1,7 @@
 import { updatePassword, User } from "firebase/auth";
 import { BaseSyntheticEvent } from "react";
 import auth from "../../../../firebase/auth";
+import styles from "../../../../styles/ChangePass.module.css";
 
 const ChangePassowrd = () => {
   const handleSubmit = (e: BaseSyntheticEvent) => {
@@ -9,8 +10,8 @@ const ChangePassowrd = () => {
     const form = new FormData(e.target);
     const user = auth.currentUser as User;
 
-    const oldPass = form.get("oldPass") as string;
-    const newPass = form.get("newPass") as string;
+    const oldPass = form.get("Old Password") as string;
+    const newPass = form.get("New Password") as string;
     const repeatPass = form.get("repeatPass") as string;
 
     if (newPass == repeatPass) {
@@ -21,15 +22,19 @@ const ChangePassowrd = () => {
     e.target.reset();
   };
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <input type="password" name="oldPass" placeholder="Old Password" />
-      <input type="password" name="newPass" placeholder="New Password" />
+    <form onSubmit={(e) => handleSubmit(e)} className={styles.container}>
+      <label htmlFor="Old Password" />
+      <input type="password" name="Old Password" placeholder="Old Password" />
+      <label htmlFor="New Password" />
+      <input type="password" name="New Password" placeholder="New Password" />
+      <label htmlFor="Repeat Password" />
       <input
         type="password"
-        name="repeatPass"
+        name="Repeat Password"
         placeholder="Repeat New Password"
       />
-      <input type="submit" value="Change Password" />
+      <label htmlFor="Change Password" />
+      <input type="submit" value="Change Password" className={styles.button} />
     </form>
   );
 };

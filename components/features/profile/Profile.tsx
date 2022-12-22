@@ -2,6 +2,7 @@ import Link from "next/link";
 import BlogTemplate from "./blogs/BlogTemplate";
 import ProfileTemplate from "./ProfileTemplate";
 import styles from "../../../styles/Profile.module.css";
+
 const Profile = () => {
   return (
     <div className={styles.profile}>

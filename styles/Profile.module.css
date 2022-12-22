@@ -30,24 +30,34 @@
   margin: 3rem;
 }
 .articles {
+  margin-top: 3rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #c9b59b;
+  width: 100%;
 }
 .create {
   padding: 1rem;
-  background-color: #5f9ea0;
+  background-color: #c9cfd0;
   max-width: 20%;
-  border: solid black 2px;
+  border: solid #000000 2px;
   margin-bottom: 1rem;
   align-self: flex-end;
 }
+.create:hover {
+  background-color: #7fa7a8;
+  text-decoration: underline;
+}
 
 .blogs {
-  background-color: #c9b59b;
+  border: solid black 3px;
+  background-color: #d5cabc9b;
   display: flex;
   justify-content: center;
   padding: 2rem;
+  border-radius: 1rem;
 }
 .blogs iframe {
   width: 32rem;
@@ -78,7 +88,7 @@
 }
 .options a {
   padding: 1rem;
-  background-color: #5f9ea0;
+  background-color: #c9cfd0;
   max-width: 20%;
   border: solid black 2px;
   margin: 0.5rem;

@@ -4,6 +4,7 @@ import { AddArticle } from "../../../../firebase/firestore";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import router from "next/router";
+import styles from "../../../../styles/CreateBlog.module.css";
 
 const CreateArticle = () => {
   const { username } = useContext(UserContext);
@@ -25,14 +26,25 @@ const CreateArticle = () => {
   };
 
   return (
-    <form name="create article" onSubmit={handleArticleSubmit}>
+    <form
+      className={styles.form}
+      name="create article"
+      onSubmit={handleArticleSubmit}
+    >
       <h1>Create Article</h1>
-      <input type="text" name="title" maxLength={30} />
-      <br></br>
-      <input type="textarea" name="contents" />
-      <input type="text" name="url" />
-      <br></br>
-      <input type="submit" value="Create" />
+      <label htmlFor="title" />
+      <input
+        type="text"
+        name="title"
+        maxLength={30}
+        placeholder="Article Title"
+      />
+      <label htmlFor="contents" />
+      <input type="textarea" name="contents" placeholder="Blog Contents" />
+      <label htmlFor="url" />
+      <input type="text" name="url" placeholder="Video URL" />
+      <label htmlFor="submit" />
+      <input type="submit" value="Create" className={styles.button} />
     </form>
   );
 };

@@ -3,6 +3,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import router from "next/router";
 import auth from "../../../../firebase/auth";
 import db from "../../../../firebase/firestore";
+import styles from "../../../../styles/DeleteAccount.module.css";
 
 const DeleteAccount = () => {
   const user = auth.currentUser as User;
@@ -17,8 +18,8 @@ const DeleteAccount = () => {
     router.push("/");
   };
   return (
-    <div>
-      <h3>Do You Want To Delete Your Account?</h3>
+    <div className={styles.container}>
+      <h3>Do You Want To Delete Your Account ?</h3>
       <button onClick={handleYes}>Yes</button>
       <button onClick={handleNo}>No</button>
     </div>
