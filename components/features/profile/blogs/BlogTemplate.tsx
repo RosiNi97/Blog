@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styles from "../../../../styles/Profile.module.css";
 import UserContext from "../../context/UserContext";
 import { DeleteDoc } from "../../../../firebase/firestore";
+
 const BlogTemplate = () => {
   const { userBlogsList } = useContext(UserContext);
 

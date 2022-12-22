@@ -7,8 +7,7 @@ import auth from "../../../firebase/auth";
 import { currentUserDoc } from "../../../firebase/firestore";
 
 const Navbar = () => {
-  const { setUserState, setUsername, userState, articleList } =
-    useContext(UserContext);
+  const { setUserState, setUsername, userState } = useContext(UserContext);
 
   useEffect(() => {
     return onAuthStateChanged(auth, async (user) => {
@@ -16,7 +15,9 @@ const Navbar = () => {
         setUserState(true);
         const currentUID = auth.currentUser?.uid;
         currentUserDoc(currentUID).then((data) => {
-          setUsername(data?.username);
+          if (data?.username !== undefined) {
+            setUsername(data.username);
+          }
         });
       } else {
         setUserState(false);

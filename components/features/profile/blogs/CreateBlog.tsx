@@ -5,7 +5,6 @@ import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import router from "next/router";
 import styles from "../../../../styles/CreateBlog.module.css";
-import { updateDoc } from "firebase/firestore";
 
 const CreateArticle = () => {
   const { username } = useContext(UserContext);
@@ -21,6 +20,8 @@ const CreateArticle = () => {
 
     if (title && contents && videoURL && userUID) {
       AddArticle(title, contents, userUID, username, videoURL);
+    } else {
+      alert("Invalid Information");
     }
     e.target.reset();
     router.push("./profilePage");

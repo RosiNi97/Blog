@@ -70,6 +70,14 @@
 .blogs h3 {
   text-decoration: underline 2px;
 }
+.blogs button {
+  display: flex;
+  background-color: rgba(255, 0, 0, 0.598);
+  align-self: flex-start;
+  padding: 1rem;
+  font-size: medium;
+  text-align: center;
+}
 .contents {
   display: flex;
   justify-content: space-evenly;

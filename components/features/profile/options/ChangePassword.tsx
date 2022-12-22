@@ -8,13 +8,13 @@ const ChangePassowrd = () => {
     e.preventDefault();
 
     const form = new FormData(e.target);
-    const user = auth.currentUser as User;
+    const user: User | null = auth.currentUser;
 
-    const oldPass = form.get("Old Password") as string;
-    const newPass = form.get("New Password") as string;
-    const repeatPass = form.get("repeatPass") as string;
+    const oldPass = form.get("Old Password")?.toString();
+    const newPass = form.get("New Password")?.toString();
+    const repeatPass = form.get("Repeat Password")?.toString();
 
-    if (newPass == repeatPass) {
+    if (newPass == repeatPass && newPass && user !== null) {
       updatePassword(user, newPass);
     } else {
       alert("Passwords Do Not Match!");
