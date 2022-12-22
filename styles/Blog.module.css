@@ -1,0 +1,65 @@
+.blog {
+  display: flex;
+  height: auto;
+  margin: auto;
+  padding: auto;
+}
+.section {
+  position: inherit;
+  margin: auto;
+  padding: auto;
+}
+
+.section.img {
+  position: absolute;
+  float: right;
+}
+.details.summary {
+  padding: 4px;
+  width: 200px;
+  border: none;
+  box-shadow: 1px 1px 2px #bbbbbb;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.footer details {
+  background-color: #eeeeee;
+  padding: 4px;
+  margin: 0;
+  box-shadow: 1px 1px 2px #bbbbbb;
+}
+.article {
+  border: solid black 3px;
+  background-color: #d5cabc9b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  border-radius: 1rem;
+  min-width: 90%;
+}
+.footer {
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.article iframe {
+  width: 32rem;
+  height: 18rem;
+  border: black 1px solid;
+}
+.contents {
+  display: flex;
+  justify-content: space-evenly;
+}
+.contents p {
+  margin: 1.5rem;
+  max-width: 50%;
+  text-align: left;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.article h1 {
+  text-decoration: underline 2px;
+}

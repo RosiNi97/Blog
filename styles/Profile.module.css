@@ -57,7 +57,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 2rem;
   border-radius: 1rem;
   min-width: 90%;
@@ -67,7 +66,7 @@
   height: 18rem;
   border: black 1px solid;
 }
-.blogs h3 {
+.blogs h1 {
   text-decoration: underline 2px;
 }
 .blogs button {

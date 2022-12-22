@@ -11,7 +11,7 @@ const BlogTemplate = () => {
       <div className={styles.blogs}>
         {userBlogsList.map((article) => (
           <div key={article.docID}>
-            <h3>{article.title}</h3>
+            <h1>{article.title}</h1>
             <div className={styles.contents}>
               <p>{article.contents}</p>
               <iframe
