@@ -1,11 +1,18 @@
+import Link from "next/link";
+import BlogTemplate from "./blogs/BlogTemplate";
 import ProfileTemplate from "./ProfileTemplate";
-import UserPostList from "./UserPosts";
-
+import styles from "../../../styles/Profile.module.css";
 const Profile = () => {
   return (
-    <div className="user-profile">
+    <div className={styles.profile}>
       <ProfileTemplate />
-      <UserPostList />
+      <div className="articles">
+        <h1>Article List</h1>
+        <Link href={"/navbar/createArticle"}>Create Article</Link>
+        <div>
+          <BlogTemplate />
+        </div>
+      </div>
     </div>
   );
 };

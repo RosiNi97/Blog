@@ -1,4 +1,5 @@
 import {
+  addDoc,
   arrayUnion,
   doc,
   DocumentData,
@@ -45,40 +46,31 @@ export const currentUserDoc = async (userUID: string | undefined) => {
   } else return {};
 };
 
-//Article Doc functions
+//Blogs Doc functions
 
 export const AddArticle = async (
   title: string,
   contents: string,
   userUID: string,
-  username: string
+  username: string,
+  videoURL: string
 ) => {
-  const docRef = doc(db, "articles", userUID);
-  const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    try {
-      await updateDoc(doc(db, "articles", userUID), {
-        articles: arrayUnion({ title: title, contents: contents, id: userUID }),
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    try {
-      await setDoc(doc(db, "articles", userUID), {
-        articles: [
-          {
-            title: title,
-            contents: contents,
-            id: "userUID + title",
-          },
-        ],
-        author: username,
-        authorUID: userUID,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  const videoID: string = videoURL.substring(
+    videoURL.indexOf("=") + 1,
+    videoURL.indexOf("&ab_channel=")
+  );
+  const docRef = collection(db, "blogs");
+
+  try {
+    await addDoc(docRef, {
+      title: title,
+      contents: contents,
+      Uid: userUID,
+      videoID: videoID,
+      username: username,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
 

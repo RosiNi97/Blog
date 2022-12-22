@@ -1,13 +1,37 @@
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import Link from "next/link";
+import router from "next/router";
+import { useContext, useEffect } from "react";
 import auth from "../../../firebase/auth";
-import styles from "../../../styles/Home.module.css";
-import { routerLogin } from "../routes/Routes";
+import db from "../../../firebase/firestore";
+import styles from "../../../styles/Profile.module.css";
+import { IArticle } from "../../../types/types";
+import UserContext from "../context/UserContext";
 
 const LogedInNavbar = () => {
   const handleClick = () => {
     auth.signOut();
-    routerLogin();
+    router.push("/navbar/loginPage");
   };
+  const { setUserBlogList } = useContext(UserContext);
+
+  useEffect(() => {
+    const currentUser = auth.currentUser?.uid;
+    if (currentUser) {
+      const queryRef = query(
+        collection(db, "blogs"),
+        where("Uid", "==", currentUser)
+      );
+      onSnapshot(queryRef, (snapshot) => {
+        const blogList: Array<IArticle> = [];
+        snapshot.forEach((blog: any) => {
+          blogList.push(blog.data());
+        });
+        setUserBlogList(blogList);
+      });
+    }
+  }, []);
+
   return (
     <div className={styles.navbar}>
       <Link href="/">Home</Link>

@@ -1,40 +1,44 @@
 import * as React from "react";
-import { createContext, useState } from "react";
-import { UserContextType } from "../../../types/types";
-import ArticleList from "../profile/articles/ArticleList";
+import { useState } from "react";
+import { IArticle, UserContextType } from "../../../types/types";
 
 const UserContext = React.createContext<UserContextType>({
+  userBlogsList: undefined,
   username: "",
+  userState: false,
   articleList: undefined,
-  GetUserState: () => false,
-  GetUsername: () => "",
-  GetArticleList: () => [],
+  setUserState: () => false,
+  setUsername: () => "",
+  setArticleList: () => [],
+  setUserBlogList: () => [],
 });
 
 export const UserContextProvider = ({ children }: any) => {
   const [userState, setUserState] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
-  const [articleList, setArticleList] = useState<Array<object>>([{}]);
-
-  const GetUsername = (currentUsername: string) => {
-    setUsername(currentUsername);
-  };
-  const GetUserState = (user: boolean) => {
-    setUserState(user);
-  };
-  const GetArticleList = (articles: Array<object>) => {
-    setArticleList(articles);
-  };
+  const [articleList, setArticleList] = useState<Array<IArticle>>([]);
+  const [userBlogsList, setUserBlogList] = useState<Array<IArticle>>([]);
 
   return (
     <UserContext.Provider
       value={{
+        userBlogsList,
         username,
         userState,
         articleList,
-        GetUsername,
-        GetUserState,
-        GetArticleList,
+        setUsername: (currentUsername: string) => {
+          setUsername(currentUsername);
+        },
+        // getUsername,
+        setUserState: (user: boolean) => {
+          setUserState(user);
+        },
+        setArticleList: (articles: IArticle[]) => {
+          setArticleList(articles);
+        },
+        setUserBlogList: (blogs: IArticle[]) => {
+          setUserBlogList(blogs);
+        },
       }}
     >
       {children}

@@ -1,9 +1,9 @@
 import { BaseSyntheticEvent } from "react";
 import auth from "../../../../firebase/auth";
 import { AddArticle } from "../../../../firebase/firestore";
-import { routerProfile } from "../../routes/Routes";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
+import router from "next/router";
 
 const CreateArticle = () => {
   const { username } = useContext(UserContext);
@@ -12,13 +12,16 @@ const CreateArticle = () => {
     e.preventDefault();
     const form = new FormData(e.target);
 
-    const title = form.get("title") as string;
-    const contents = form.get("contents") as string;
+    const userUID = auth.currentUser?.uid;
+    const title = form.get("title")?.toString();
+    const contents = form.get("contents")?.toString();
+    const videoURL = form.get("url")?.toString();
 
-    AddArticle(title, contents, auth.currentUser?.uid as string, username);
-
+    if (title && contents && videoURL && userUID) {
+      AddArticle(title, contents, userUID, username, videoURL);
+    }
     e.target.reset();
-    routerProfile();
+    router.push("./profilePage");
   };
 
   return (
@@ -27,6 +30,7 @@ const CreateArticle = () => {
       <input type="text" name="title" maxLength={30} />
       <br></br>
       <input type="textarea" name="contents" />
+      <input type="text" name="url" />
       <br></br>
       <input type="submit" value="Create" />
     </form>

@@ -1,10 +1,28 @@
 import LogedInNavbar from "./LoggedInNavbar";
 import LogedOutNavbar from "./LoggedOutNavbar";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContext from "../context/UserContext";
+import { onAuthStateChanged } from "firebase/auth";
+import auth from "../../../firebase/auth";
+import { currentUserDoc } from "../../../firebase/firestore";
 
 const Navbar = () => {
-  const { userState } = useContext(UserContext);
+  const { setUserState, setUsername, userState, articleList } =
+    useContext(UserContext);
+
+  useEffect(() => {
+    return onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserState(true);
+        const currentUID = auth.currentUser?.uid;
+        currentUserDoc(currentUID).then((data) => {
+          setUsername(data?.username);
+        });
+      } else {
+        setUserState(false);
+      }
+    });
+  }, []);
 
   if (userState) {
     return <LogedInNavbar />;

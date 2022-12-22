@@ -1,5 +1,5 @@
 import { updatePassword, User } from "firebase/auth";
-import { BaseSyntheticEvent, FormEvent } from "react";
+import { BaseSyntheticEvent } from "react";
 import auth from "../../../../firebase/auth";
 
 const ChangePassowrd = () => {
