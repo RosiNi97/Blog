@@ -31,13 +31,19 @@ export default function BlogCollection() {
                 <h3>Title : {b.title}</h3>
                 <p>{b.contents}</p>
                 <div className={styles.blog}></div>
-                <section >
+                <iframe
+                  width="853"
+                  height="480"
+                  src={`https://www.youtube.com/embed/${b.videoID}`}
+                  allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={b.title}
+                />
+                <section>
                   <img
                     src="https://t3.ftcdn.net/jpg/02/51/30/52/360_F_251305284_M7NOdeDXcXx44WkUWkHQijztn3yneroq.jpg"
-                    alt="working"
-                  />
+                    alt="working"/>
                 </section>
-                <aside >
                   <details>
                     <summary>More</summary>
                     <p></p>
@@ -47,17 +53,8 @@ export default function BlogCollection() {
                     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="inst logo" width="60px;" height="60"/>
                     <img src="https://cdn-icons-png.flaticon.com/512/2175/2175193.png" alt="fb logo" width="60px;" height="60"/>
                     <img src="https://cdn-icons-png.flaticon.com/512/466/466953.png" alt="pint logo" width="60px;" height="60"/>
-                  </details>
-                </aside>
+                  </details>              
                 </div>
-                <iframe
-                  width="853"
-                  height="480"
-                  src={`https://www.youtube.com/embed/${b.videoID}`}
-                  allow="accelerometer;autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={b.title}
-                />
               </div>
           ))
         : "No Content To Show"}
