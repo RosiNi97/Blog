@@ -1,20 +1,14 @@
-.blog{
-  margin: auto;
-  background-color: #bbbbbb;
-  height: 10px;
-  width: 10px;
-}
 .section{
     position: inherit;
     margin: auto;
     padding: auto;
 }
 
-.section img{
+.section.img{
     position: absolute;
     float: right;   
 }
-.details summary {
+.details.summary {
     padding: 4px;
     width: 200px;
     border: none;
@@ -22,10 +16,9 @@
     cursor: pointer;
   }
   
-  .details p {
+  .details.p {
     background-color: #eeeeee;
     padding: 4px;
     margin: 0;
     box-shadow: 1px 1px 2px #bbbbbb;
   }
-  
