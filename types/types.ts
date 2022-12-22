@@ -21,7 +21,7 @@ export interface IArticle {
   title: string;
   contents: string;
   videoID: string;
-  Uid: string;
+  id: string;
   username: string;
   docID?: string;
 }
