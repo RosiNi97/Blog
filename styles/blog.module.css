@@ -1,3 +1,9 @@
+.blog{
+    display:flex;
+    height:auto;
+    margin:auto;
+   padding:auto; 
+}
 .section{
     position: inherit;
     margin: auto;
