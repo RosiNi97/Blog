@@ -5,6 +5,7 @@ import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import router from "next/router";
 import styles from "../../../../styles/CreateBlog.module.css";
+import { updateDoc } from "firebase/firestore";
 
 const CreateArticle = () => {
   const { username } = useContext(UserContext);

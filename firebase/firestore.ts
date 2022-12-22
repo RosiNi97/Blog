@@ -1,6 +1,7 @@
 import {
   addDoc,
   arrayUnion,
+  deleteDoc,
   doc,
   DocumentData,
   getDoc,
@@ -10,6 +11,7 @@ import {
 } from "firebase/firestore";
 import app from "./firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 export const db = getFirestore(app);
 
@@ -68,10 +70,22 @@ export const AddArticle = async (
       Uid: userUID,
       videoID: videoID,
       username: username,
+    }).then(async (document) => {
+      await updateDoc(doc(db, "blogs", document.id), { docID: document.id });
     });
   } catch (err) {
     console.log(err);
   }
+};
+export const DeleteDoc = async (docID: string | undefined) => {
+  if (docID) {
+    await deleteDoc(doc(db, "blogs", docID));
+  }
+  // try {
+  //   await
+  // } catch (err) {
+  //   alert(err);
+  // }
 };
 
 export const currentUserArticles = async (userUID: string) => {

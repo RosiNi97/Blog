@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styles from "../../../../styles/Profile.module.css";
 import UserContext from "../../context/UserContext";
+import { DeleteDoc } from "../../../../firebase/firestore";
 const BlogTemplate = () => {
   const { userBlogsList } = useContext(UserContext);
 
@@ -8,7 +9,7 @@ const BlogTemplate = () => {
     return (
       <div className={styles.blogs}>
         {userBlogsList.map((article) => (
-          <div key={article.id + article.title}>
+          <div key={article.docID}>
             <h3>{article.title}</h3>
             <div className={styles.contents}>
               <p>{article.contents}</p>
@@ -19,6 +20,7 @@ const BlogTemplate = () => {
                 title={article.title}
               />
             </div>
+            <button onClick={() => DeleteDoc(article.docID)}>Delete</button>
           </div>
         ))}
       </div>
