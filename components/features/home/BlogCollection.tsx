@@ -6,7 +6,6 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { IArticle } from "../../../types/types";
 
 export default function BlogCollection() {
-  //const { articleList } = useContext(UserContext);
   const { articleList, setArticleList } = useContext(UserContext);
 
   const blogRef = collection(db, "blogs");

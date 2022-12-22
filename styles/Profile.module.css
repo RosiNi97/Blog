@@ -12,14 +12,13 @@
   border: solid black 2px;
 }
 .navbar a {
-  /* margin: 3rem; */
   border: solid #524d4d25 1px;
   padding: 1rem;
   background-color: #fffbef;
   min-width: 7rem;
 }
 .navbar a:hover {
-  background-color: #fffbee;
+  background-color: #e6d7a7;
   text-decoration: underline;
 }
 
@@ -28,11 +27,36 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  border: solid black 1px;
+
   margin: 3rem;
 }
 .blogs {
   border: solid black 1px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
+}
+.options {
+  background-color: #c9b59b;
+  border-radius: 2rem;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.options a {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #5f9ea0;
+  max-width: 20%;
+  border: solid black 2px;
+  margin: 0.5rem;
+}
+.options a:hover {
+  background-color: #7fa7a8;
+  text-decoration: underline;
+}
+.links {
+  display: flex;
+  justify-content: center;
 }

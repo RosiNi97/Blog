@@ -8,7 +8,9 @@ const Profile = () => {
       <ProfileTemplate />
       <div className="articles">
         <h1>Article List</h1>
-        <Link href={"/navbar/createArticle"}>Create Article</Link>
+        <Link href={"/navbar/createArticle"} className={styles.create}>
+          Create Article
+        </Link>
         <div>
           <BlogTemplate />
         </div>
